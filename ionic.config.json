@@ -1,9 +1,0 @@
-{
-  "name": "mystart",
-  "app_id": "531ec91a",
-  "type": "ionic-angular",
-  "integrations": {
-    "cordova": {}
-  },
-  "gulpStartupTasks": ["sass", "watch"]
-}
