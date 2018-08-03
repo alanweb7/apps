@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="page1" style="background-color:#000000;">
+  <div class="spacer" style="width:300px;height:29px;" id="home-spacer1"></div>
+  <img src="assets/img/0YCNfH79RwanY6W3GTye_Logo_white.png" style="display:block;width:40%;height:auto;margin-left:auto;margin-right:auto;" />
+  <div id="home-markdown1" style="text-align:center;" class="show-list-numbers-and-dots">
+    <p style="color:#FFFFFF;font-size:12px;">
+      Tudo se Conecta Aqui!
+    </p>
+  </div>
+  <div class="spacer" style="width:300px;height:24px;" id="home-spacer2"></div>
+  <form id="home-form1">
+    <ion-item id="home-input1" ng-model="movie.name" class="search_code">
+      <ion-label></ion-label>
+      <ion-input type="text" placeholder="CODE"  [(ngModel)]="codeNumber" name="code"></ion-input>
+    </ion-item>
+    <div class="spacer" style="width:300px;height:29px;" id="home-spacer1"></div>
+  <button id="home-button1" ion-button color="positive" block icon-left (click)="pushPage()" style="font-weight:600;">
+    <ion-icon name="navigate"></ion-icon>
+    ACESSAR
+  </button>    
+  </form>
+
+</ion-content>
