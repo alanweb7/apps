@@ -16,8 +16,10 @@ import { HomePage } from "./../home/home";
 export class VerConteDoPage {
   users: any[];
   video: any;
-  // elenco: any[];
   page: number;
+  imgSrc:any;
+  showhidefavorite:any=1;
+
   @ViewChild(InfiniteScroll) infiniteScroll: InfiniteScroll;
   @ViewChild('mySlider') mySlider: any;
   @ViewChild('videoPlayer') mVideoPlayer: any;
@@ -32,7 +34,7 @@ export class VerConteDoPage {
     // private alertCtrl: AlertController
             )
     {  
-    let id = navParams.get('info');
+    let id = navParams.get('info'); 
     // console.log(id);
   
 
@@ -72,13 +74,16 @@ export class VerConteDoPage {
         for (var i = 0; i < result.data.length; i++) {
           var user = result.data[i];      
           this.users.push(user);
+          if(this.users[0].videoExterno !== ''){
+            this.showhidefavorite = 0;
+          }
+          // this.mVideoPlayer = 'https://www.youtube.com/embed/${user.videoExterno}';
+          let video = this.mVideoPlayer.nativeElement;
+          video.src = "https://www.youtube.com/embed/"+user.videoExterno;
+          // this.mVideoPlayer = '<iframe src="https://www.youtube.com/embed/' + user.videoExterno + '" frameborder="0" allowfullscreen width="560" height="315" style="position:absolute;top:0;left:0;width:100%;height:100%;" ></iframe>';
 //definindo o video pra tela de saida
-            let video = this.mVideoPlayer.nativeElement;
-            video.src = "https://www.youtube.com/embed/" + user.videoExterno;
             // video.play();
         }
-
-
 
       })
       .catch((error: any) => {

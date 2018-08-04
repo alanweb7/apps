@@ -12,13 +12,17 @@
   <h4 id="verConteDo-heading2" style="color:#000000;" *ngFor="let user of users">
     {{ user.titulo }}
   </h4>
-  <div class="spacer" style="width:300px;height:15px;" id="verConteDo-spacer4"></div>
-  <div style="position:relative;overflow:hidden;padding-bottom:56.25%;height:0;" id="verConteDo-video1" >
+  <div class="spacer" style="width:300px;height:15px;" id="verConteDo-spacer4" ></div>
+<div [hidden]=showhidefavorite >
+  <div style="position:relative;overflow:hidden;padding-bottom:56.25%;height:0;" id="verConteDo-video1" > 
     <iframe #videoPlayer frameborder="0" allowfullscreen width="560" height="315" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
   </div>
-  <video controls="controls" preload="metadata" autoplay="autoplay" webkit-playsinline="webkit-playsinline" class="videoPlayer" *ngFor="let user of users">
+</div>
+  <div *ngFor="let user of users" >
+  <video controls="controls" preload="metadata" autoplay="autoplay" webkit-playsinline="webkit-playsinline" class="videoPlayer" *ngIf="user.video !== ''">
       <source src="{{user.video}}" type="video/mp4" />
   </video>
+</div>  
   <div class="spacer" style="width:300px;height:15px;" id="verConteDo-spacer5"></div>
 
   <ion-slides paginationClickable=true
@@ -39,8 +43,6 @@
       <ion-slide>
           <img src="{{user.imagem4}}">
       </ion-slide>
-
-
     </ion-slides>
 
 
@@ -81,8 +83,6 @@
         <ion-icon name="ios-mail"></ion-icon>
     </button>
   </a>
-  
-
   
   </div>  
 
