@@ -1,6 +1,6 @@
 import { CodeProvider } from './../../providers/code/code';
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, InfiniteScroll } from 'ionic-angular';
+import { Component, ElementRef } from '@angular/core';
+import { IonicPage, NavController, NavParams, ToastController, InfiniteScroll, LoadingController } from 'ionic-angular';
 import { ViewChild } from '@angular/core';
 
 // import { BackgroundMode } from '@ionic-native/background-mode';
@@ -22,7 +22,9 @@ export class VerConteDoPage {
 
   @ViewChild(InfiniteScroll) infiniteScroll: InfiniteScroll;
   @ViewChild('mySlider') mySlider: any;
-  @ViewChild('videoPlayer') mVideoPlayer: any;
+  @ViewChild('videoPlayer') mVideoPlayer: any ;
+  @ViewChild('iframe') iframe: any;
+  @ViewChild('documento') mDocumento: any;
 
   constructor(
     platform: Platform,
@@ -30,6 +32,7 @@ export class VerConteDoPage {
     public navParams: NavParams,
     private toast: ToastController,
     private codeProvider: CodeProvider,
+    public loadingCtrl: LoadingController,
     // private backgroundMode: BackgroundMode,
     // private alertCtrl: AlertController
             )
@@ -56,7 +59,9 @@ export class VerConteDoPage {
 
 // funcao background mode 
 }
-
+ionViewDidLoad(){
+  this.presentLoadingDefault();
+}
 
   ionViewDidEnter(id) {
     this.users = [];
@@ -69,45 +74,41 @@ export class VerConteDoPage {
     // console.log('Pagina conteudo');
     // console.log(page);
     this.codeProvider.getAll(page)
-      .then((result: any) => {
+      .then(
+        (result: any) => {
         console.log(result);
         for (var i = 0; i < result.data.length; i++) {
           var user = result.data[i];      
           this.users.push(user);
           if(this.users[0].videoExterno !== ''){
-            this.showhidefavorite = 0;
+            this.showhidefavorite = 0;            
           }
-          // this.mVideoPlayer = 'https://www.youtube.com/embed/${user.videoExterno}';
-          let video = this.mVideoPlayer.nativeElement;
-          video.src = "https://www.youtube.com/embed/"+user.videoExterno;
-          // this.mVideoPlayer = '<iframe src="https://www.youtube.com/embed/' + user.videoExterno + '" frameborder="0" allowfullscreen width="560" height="315" style="position:absolute;top:0;left:0;width:100%;height:100%;" ></iframe>';
-//definindo o video pra tela de saida
-            // video.play();
+          this.iframe = this.iframe.nativeElement;
+          this.iframe.src = "https://www.youtube.com/embed/6oB3e6uII0Y";
+          alert(this.iframe);          
         }
 
       })
       .catch((error: any) => {
-        this.toast.create({ message: 'Erro ao listar os usuários. Erro: ' + error.error, position: 'botton', duration: 3000 }).present();
+        // this.toast.create({ message: 'Erro ao listar os usuários. Erro: ' + error.error, position: 'botton', duration: 3000 }).present();
       });
-     
-
   }
 
   pushHome(){
     this.navCtrl.setRoot(HomePage);
   } 
 
-//funcoes do slide
-slideNext(){
-  this.mySlider.slideNext();
+  presentLoadingDefault() {
+    let loading = this.loadingCtrl.create({
+      content: 'Carregando...'
+    });
+  
+    loading.present();
+  
+    setTimeout(() => {
+      loading.dismiss();
+    }, 5000);
+  } 
+
+
 }
-
-slidePrev(){
-  this.mySlider.slidePrev();
-}
-
-
-
-}
-// exemplo de retorno da api
-// {"data":[{"id":1,"first_name":"Meu primeiro vídeo","last_name":"Bluth","avatar":"https://s3.amazonaws.com/uifaces/faces/twitter/calebogden/128.jpg"}]}

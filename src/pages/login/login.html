@@ -1,12 +1,15 @@
-<ion-header>
+<style>
+  .iframe-issue {
+    -webkit-overflow-scrolling: touch !important;
+    overflow: scroll !important;
+  }
+</style>
 
-  <ion-navbar>
-    <ion-title>login</ion-title>
-  </ion-navbar>
+<ion-view title="Painel de Controle">
+  <ion-content scroll="true" class="has-header padding iframe-issue">
+    <h1>Dashboard0</h1>
 
-</ion-header>
+<iframe src="https://kcode.com.br/api/login" style="width:100%;height:100%"></iframe>
 
-
-<ion-content padding>
-
-</ion-content>
+  </ion-content>
+</ion-view>

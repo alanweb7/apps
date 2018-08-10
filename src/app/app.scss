@@ -52,3 +52,20 @@ a.button.button-positive {
 video.videoPlayer {
     width: 100%;
 }
+ion-item-sliding.docitem.item-wrapper {
+    border: 1px solid;
+    border-radius: 5px;
+}
+div#minhaConta-container1 {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20%;
+    text-align: center;
+    width: 100%;
+    z-index: -1;
+}
+.total_content {
+    width: 100%;
+    height: 100%;
+}

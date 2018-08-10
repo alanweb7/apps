@@ -8,14 +8,16 @@
     </ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding id="page5" >
+<ion-content padding id="page5"  >
+  <div call="total" *ngFor="let user of users"> 
+  <div *ngIf="user.id !== 'error'">
   <h4 id="verConteDo-heading2" style="color:#000000;" *ngFor="let user of users">
     {{ user.titulo }}
   </h4>
   <div class="spacer" style="width:300px;height:15px;" id="verConteDo-spacer4" ></div>
-<div [hidden]=showhidefavorite >
+<div [hidden]="user.videoExterno === ''" >
   <div style="position:relative;overflow:hidden;padding-bottom:56.25%;height:0;" id="verConteDo-video1" > 
-    <iframe #videoPlayer frameborder="0" allowfullscreen width="560" height="315" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+    <iframe #iframe frameborder="0" allowfullscreen width="560" height="315" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
   </div>
 </div>
   <div *ngFor="let user of users" >
@@ -40,63 +42,62 @@
       <ion-slide>
           <img src="{{user.imagem3}}">
       </ion-slide>
-      <ion-slide>
+      <ion-slide [hidden]="user.imagem4 === ''">
           <img src="{{user.imagem4}}">
       </ion-slide>
     </ion-slides>
-
-
 
   <div id="verConteDo-markdown2" class="show-list-numbers-and-dots">
     <p style="color:#000000;" *ngFor="let user of users">
       {{ user.descricao }}
     </p>
   </div>
-  <ion-list id="verConteDo-list3">
-    <ion-item-sliding>
+  <ion-list id="verConteDo-list3" *ngFor="let user of users" [hidden]="user.documento === ''">
+<a href="{{user.documento}}">      
+    <ion-item-sliding class="docitem">
+  
       <ion-item color="none" id="verConteDo-list-item5">
-        <!-- {{filename}} -->
-        Nome od arquivo
+        {{user.nome_documento}} 
         <ion-icon name="document" item-right></ion-icon>
       </ion-item>
+      
       <ion-item-options side="left">
         <button ion-button color="positive"></button>
       </ion-item-options>
     </ion-item-sliding>
+  </a>       
   </ion-list>
   <h4 id="verConteDo-heading3" ng-show="faleConosco" style="color:#000000;text-align:center;">
     Entre em Contato
   </h4>
   <div id="cloud-button-bar1" class="button-bar" *ngFor="let user of users">
-  <a href="tel:{{user.tel_whatsapp}}"  class="button button-positive button-block"> 
+  <a href="tel:{{user.tel_whatsapp}}"  class="button button-positive button-block" [hidden]="user.tel_whatsapp === ''"> 
       <button id="verConteDo-button4" ion-button color="positive" class="button-block">
       <ion-icon name="call"></ion-icon>
       </button>
   </a>
-  <a href="http://api.whatsapp.com/send?1=pt_BR&phone={{user.pais}}{{user.tel_whatsapp}}"  class="button button-positive button-block">
+  <a href="http://api.whatsapp.com/send?1=pt_BR&phone={{user.pais}}{{user.tel_whatsapp}}"  class="button button-positive button-block" [hidden]="user.tel_whatsapp === ''">
       <button id="verConteDo-button5" ion-button color="balanced"  class="btn_zap button-block" >
         <ion-icon name="logo-whatsapp"></ion-icon>
       </button>
   </a>
-  <a href="{{user.email}}"  class="button button-positive">
+  <a href="mailto:{{user.email}}"  class="button button-positive" [hidden]="user.email === ''">
     <button id="verConteDo-button6" ion-button color="positive"  class="button-block">
         <ion-icon name="ios-mail"></ion-icon>
     </button>
   </a>
-  
-  </div>  
-
+  </div>
   <div class="spacer" style="width:300px;height:24px;" id="verConteDo-spacer6"></div>
   <h4 id="verConteDo-heading4" ng-show="RedesSociais" style="color:#000000;text-align:center;">
     Redes Sociais
   </h4>
   <div id="cloud-button-bar2" class="button-bar" *ngFor="let user of users">
-<a href="{{user.facebookUser}}"  class="button button-positive">
+<a href="https://facebook.com/{{user.facebookUser}}"  class="button button-positive" [hidden]="user.facebookUser === ''">
   <button id="verConteDo-button7" ion-button outline color="dark" class="btn_50 button-block">
     <ion-icon name="logo-facebook" style="font-size: 24px"></ion-icon>
   </button>
 </a>
-<a href="{{user.instagramUser}}"  class="button button-positive">
+<a href="https://instagram.com/{{user.instagramUser}}"  class="button button-positive" [hidden]="user.instagramUser === ''">
   <button id="verConteDo-button8" ion-button outline color="dark"  class="btn_50 button-block">
     <ion-icon name="logo-instagram" style="font-size: 24px"></ion-icon>
   </button>
@@ -108,4 +109,18 @@
     <ion-icon name="arrow-back"></ion-icon>
     Início
   </button>
-</ion-content>
+  <!--  Caso haja erro... -->
+</div>
+<div *ngFor="let user of users">
+    <div *ngIf="user.id === 'error'">
+<div class="spacer" style="width:500px;height:37px;" id="verConteDo-spacer74"></div>
+      <button (click)='pushHome()' id="verConteDo-button93" ion-button color="dark" block large icon-left>
+          <ion-icon name="arrow-back"></ion-icon>
+          Não encontrado. Tente novamente.
+        </button>  
+    </div>
+  </div> 
+</div>  <!-- Div total -->
+</ion-content>   
+   
+

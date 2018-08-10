@@ -15,6 +15,7 @@ import { CodeProvider } from '../providers/code/code';
 import { BackgroundMode } from '@ionic-native/background-mode';
 
 import { HttpModule } from '@angular/http';
+import { Sim } from '../../node_modules/@ionic-native/sim';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { HttpModule } from '@angular/http';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CodeProvider,
     Geolocation,
-    BackgroundMode
+    BackgroundMode,
+    Sim
   ]
 })
 export class AppModule {}
