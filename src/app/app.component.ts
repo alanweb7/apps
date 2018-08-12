@@ -4,8 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { MinhaContaPage } from '../pages/minha-conta/minha-conta';
-
-
+import { HistoricoPage, } from '../pages/historico/historico';
 import { HomePage } from '../pages/home/home';
 
 
@@ -28,8 +27,14 @@ export class MyApp {
   goToHome(params){
     if (!params) params = {};
     this.navCtrl.setRoot(HomePage);
-  }goToMinhaConta(params){
+  }
+  goToMinhaConta(params){
     if (!params) params = {};
     this.navCtrl.setRoot(MinhaContaPage);
   }
+  goToHistorico(params){
+    if (!params) params = {};
+    this.navCtrl.setRoot(HistoricoPage);
+  }
+
 }

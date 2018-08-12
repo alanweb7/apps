@@ -8,6 +8,8 @@ import { AlertController } from 'ionic-angular';
 import {Platform} from 'ionic-angular';
 
 import { HomePage } from "./../home/home";
+
+import { Storage } from '@ionic/storage';
 // @IonicPage()
 @Component({
   selector: 'page-ver-conte-do',
@@ -33,6 +35,7 @@ export class VerConteDoPage {
     private toast: ToastController,
     private codeProvider: CodeProvider,
     public loadingCtrl: LoadingController,
+    private storage: Storage,
     // private backgroundMode: BackgroundMode,
     // private alertCtrl: AlertController
             )
@@ -61,9 +64,11 @@ export class VerConteDoPage {
 }
 ionViewDidLoad(){
   this.presentLoadingDefault();
+  // this.mostrarStorage();
 }
 
   ionViewDidEnter(id) {
+    // this.mostrarStorage();
     this.users = [];
     this.page = this.navParams.get('info');
     this.getAllUsers(this.page);
@@ -110,5 +115,11 @@ ionViewDidLoad(){
     }, 5000);
   } 
 
-
+  mostrarStorage(){
+  // Or to get a key/value pair
+  this.storage.get('name').then((val) => {
+    console.log('Historico: ', val);
+  });
 }
+
+  }

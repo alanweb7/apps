@@ -6,6 +6,7 @@ import { VerConteDoPage } from '../ver-conte-do/ver-conte-do';
 import { Geolocation } from '@ionic-native/geolocation';
 
 import { Sim } from '@ionic-native/sim';
+import { Storage } from '@ionic/storage';
 // import { MinhaContaPage } from '../minha-conta/minha-conta'
 
 @Component({
@@ -27,7 +28,8 @@ export class HomePage {
     private global: CodeProvider,
     private geo: Geolocation,
     private platform: Platform,
-    private sim: Sim
+    private sim: Sim,
+    private storage: Storage
   ) {
       this.pushInfoPhone();  
     }
@@ -37,6 +39,8 @@ export class HomePage {
    this.pushInfoPhone(); 
     }     
   pushPage(){
+      // set a key/value
+    // this.storage.set('name', 'Max');
     this.geo.getCurrentPosition().then(res => {
       this.endLat = res.coords.latitude;
       this.endLong = res.coords.longitude;
