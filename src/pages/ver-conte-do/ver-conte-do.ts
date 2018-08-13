@@ -116,8 +116,9 @@ ionViewDidLoad(){
   } 
 
   mostrarStorage(){
+
   // Or to get a key/value pair
-  this.storage.get('name').then((val) => {
+  this.storage.get('historico').then((val) => {
     console.log('Historico: ', val);
   });
 }

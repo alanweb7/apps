@@ -26,16 +26,21 @@ export class CodeProvider {
 
 
   // Or to get a key/value pair
-  this.storage.get('name').then((val) => {
-    var content = val;    
+  this.storage.get('historico').then((val) => {
+
   if(val !== null){
-    this.storage.set('name', '{code:'+code+'},'+ content);
+    var obj7     = JSON.parse(val);
+    obj7['historico'].push({code:code});
+    var atualizado = JSON.stringify(obj7);
+    this.storage.set('historico', atualizado);
+    console.log('Atualizado: ', obj7);    
+
   }else{
-    this.storage.set('name', '{code:'+code+'},');
+    // "{"historico":[{"teamId":"1","status":"pending"},{"teamId":"2","status":"member"},{"teamId":"3","status":"member"},{"teamId":"4","status":"pending"}]}" 
+    this.storage.set('historico', '{"historico":[{"code":"'+code+'"}]}');
   }
   console.log('Historico: ', val);
 });
-
 
     return new Promise((resolve, reject) => {
       

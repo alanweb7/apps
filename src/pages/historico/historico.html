@@ -15,9 +15,11 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding class="page-historico" >
-<ion-item>
-  <p class="listaCodes" *ngFor="let code of listaCodes">
-    - AS09 - {{code.code}}
-  </p>
-</ion-item>
+  <div *ngFor="let code of listaCodes">
+          <button id="home-button1" ion-button color="positive" block icon-left (click)="pushPage()"  style="font-weight:600;">
+              <ion-icon name="navigate"></ion-icon> 
+              {{code}}
+            </button> 
+  </div>
+
 </ion-content>
