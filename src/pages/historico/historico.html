@@ -16,10 +16,15 @@
 </ion-header>
 <ion-content padding class="page-historico" >
   <div *ngFor="let code of listaCodes">
-          <button id="home-button1" ion-button color="positive" block icon-left (click)="pushPage()"  style="font-weight:600;">
+          <button id="home-button7" ion-button color="positive" block icon-left (click)="pushPage(code)"  style="font-weight:600;    text-transform: uppercase;">
               <ion-icon name="navigate"></ion-icon> 
               {{code}}
             </button> 
+          <button id="home-button77" ion-button color="positive" block icon-left (click)="removerFavorito(code)"  style="font-weight:600;    text-transform: uppercase;">
+              <ion-icon name="navigate"></ion-icon> 
+             Remover -  {{code}}
+            </button> 
+
   </div>
 
 </ion-content>

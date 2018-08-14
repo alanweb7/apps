@@ -23,6 +23,7 @@ import { Storage } from '@ionic/storage';
 })
 export class HistoricoPage {
   public listaCodes: any;
+  public codesFounds: any;
   public codex: any;
   public obj: any;
   public result: any;
@@ -55,6 +56,7 @@ if(obj7 !== null){
 
 console.log('Historico Atual: ', obj7);
 var codesFound = obj7.historico;
+this.codesFounds = obj7.historico;
 var names = codesFound.map(function (person) { return person.code; });
 var sorted = names.sort();
 
@@ -95,7 +97,7 @@ console.log('Historico Filtrado: ', unique);
   // alert('Fone Global: ' +this.global.myGlobalVar)      
 }
   
-  pushPage(){
+  pushPage(code){
     // set a key/value
   // this.storage.set('name', 'Max');
   this.geo.getCurrentPosition().then(res => {
@@ -113,11 +115,37 @@ console.log('Historico Filtrado: ', unique);
   console.log();
   this.navCtrl.push(VerConteDoPage, {
     info: {
-      code: this.codeNumber,
+      code: code,
       position:{"latitude": latitude, "longitude": longitude},
       telephone: this.global.myGlobalVar
     }
   });
 }
+
+
+filtrar(arr, code) {
+  var res = []
+  for (var i = 0, j = arr.length; i !== j; i++) {
+    if (arr[i].code !== code) res.push(arr[i]);
+  }
+  return res;
+};
+
+removerFavorito(code) {
+  // alert('code :'+ code);
+  var arr = [
+    {code: 'taxi', name: 'John Snow'}, 
+    {code: 'hut', name: 'Michael Scolfield'}, 
+    {code: 'açai', name: 'Dexter Morgan'}
+];
+
+ var novaLista = this.filtrar(this.codesFounds, code);
+ var atualizado = JSON.stringify(novaLista);
+ this.storage.set('historico', '{"historico":'+ atualizado +'}');
+  console.log('Lista de Codes atualizados: ', atualizado);
+  console.log('Lista de Codes no Storage: ', this.codesFounds);
+  this.navCtrl.setRoot(this.navCtrl.getActive().component); //atualiza apagina atual
+}
+
 
 }
