@@ -1,6 +1,6 @@
 import { CodeProvider } from './../../providers/code/code';
-import { Component, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, InfiniteScroll, LoadingController } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController, NavParams, InfiniteScroll, LoadingController } from 'ionic-angular';
 import { ViewChild } from '@angular/core';
 
 // import { BackgroundMode } from '@ionic-native/background-mode';
@@ -32,7 +32,6 @@ export class VerConteDoPage {
     platform: Platform,
     public navCtrl: NavController,
     public navParams: NavParams,
-    private toast: ToastController,
     private codeProvider: CodeProvider,
     public loadingCtrl: LoadingController,
     private storage: Storage,
