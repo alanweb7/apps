@@ -31,7 +31,7 @@ export class HomePage {
     }
     ionViewDidLoad(){
    this.pushGeoinfo(); 
-   alert('O Aplicativo está sendo preparado...');
+  //  alert('O Aplicativo está sendo preparado...');
    this.pushInfoPhone(); 
     }     
   pushPage(){
