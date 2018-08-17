@@ -98,3 +98,11 @@ ion-content.content.content-md.pagePesquisa {
     background-repeat: no-repeat;
     background-size: cover;
 }
+.barPesquisa {
+    display: flex;
+}
+button.btnPesquisa {
+    margin: 10px;
+    background: #fff;
+    color: black;
+}

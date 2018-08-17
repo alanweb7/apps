@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, Platform, LoadingController } from 'ionic-angular';
 import { CodeProvider } from '../../providers/code/code';
 import { VerConteDoPage } from '../ver-conte-do/ver-conte-do';
+import { PesquisaPage } from '../pesquisa/pesquisa';
 
 import { Geolocation } from '@ionic-native/geolocation';
 
@@ -96,5 +97,32 @@ pushInfoPhone(){
   // alert('Fone Global: ' +this.global.myGlobalVar)      
 }
 
+pushPageCode(){
+  this.geo.getCurrentPosition().then(res => {
+    this.endLat = res.coords.latitude;
+    this.endLong = res.coords.longitude;
+    console.log(this.endLat );
+
+  }).catch(() => {
+  alert("erro ao pegar geolocalizacao");
+  })
+   // console.log('clicou');
+  let latitude = this.endLat;
+  let longitude = this.endLong;
+  console.log();
+  this.navCtrl.push(VerConteDoPage, {
+    info: {
+      code: 'KSCODE',
+      position:{"latitude": latitude, "longitude": longitude},
+      telephone: this.global.myGlobalVar
+    }
+  });
+}
+
+pushPagePesquisa(){
+  this.navCtrl.push(PesquisaPage, {
+
+  });
+}
 
 }
