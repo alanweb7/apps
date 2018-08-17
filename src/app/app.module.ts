@@ -4,6 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { HistoricoPage } from '../pages/historico/historico';
+import { PesquisaPage } from '../pages/pesquisa/pesquisa';
 import { MinhaContaPage } from '../pages/minha-conta/minha-conta';
 import { VerConteDoPage } from '../pages/ver-conte-do/ver-conte-do';
 import { LinkExternoPage } from '../pages/link-externo/link-externo';
@@ -13,7 +14,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CodeProvider } from '../providers/code/code';
-import { BackgroundMode } from '@ionic-native/background-mode';
+// import { BackgroundMode } from '@ionic-native/background-mode';
 
 import { HttpModule } from '@angular/http';
 import { Sim } from '../../node_modules/@ionic-native/sim';
@@ -23,7 +24,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Pro } from '@ionic/pro';
 
 Pro.init('325ddd2e', {
-  appVersion: '19.0.5'
+  appVersion: '19.0.7'
 })
 
 @Injectable()
@@ -54,6 +55,7 @@ export class MyErrorHandler implements ErrorHandler {
     HomePage,
     HistoricoPage,
     MinhaContaPage,
+    PesquisaPage,
     VerConteDoPage,
     LinkExternoPage
   ],
@@ -67,7 +69,8 @@ export class MyErrorHandler implements ErrorHandler {
   entryComponents: [
     MyApp,
     HomePage,
-    HistoricoPage,    
+    HistoricoPage,
+    PesquisaPage,        
     MinhaContaPage,
     VerConteDoPage,
     LinkExternoPage
@@ -78,7 +81,7 @@ export class MyErrorHandler implements ErrorHandler {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CodeProvider,
     Geolocation,
-    BackgroundMode,
+    // BackgroundMode,
     Sim
   ]
 })

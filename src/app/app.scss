@@ -82,3 +82,10 @@ button#home-button77 {
 button#home-button77 {
     background-color: red;
 }
+span.div2 {
+    white-space: nowrap;
+    height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+

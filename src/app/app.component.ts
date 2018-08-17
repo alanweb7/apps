@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { MinhaContaPage } from '../pages/minha-conta/minha-conta';
 import { HistoricoPage, } from '../pages/historico/historico';
+import { PesquisaPage, } from '../pages/pesquisa/pesquisa';
 import { HomePage } from '../pages/home/home';
 
 
@@ -35,6 +36,10 @@ export class MyApp {
   goToHistorico(params){
     if (!params) params = {};
     this.navCtrl.setRoot(HistoricoPage);
+  }
+  goToPasquisa(params){
+    if (!params) params = {};
+    this.navCtrl.setRoot(PesquisaPage);
   }
 
 }

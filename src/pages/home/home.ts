@@ -66,7 +66,8 @@ pushGeoinfo(){
     // alert("latitude: " + res.coords.latitude);
     // alert("longitude: " + res.coords.longitude);
     }).catch(() => {
-    alert("erro 2 ao pegar geolocalizacao ");
+    // alert("Configure sua Localização! ");
+    console.log('Erro ao pegar Localização');
     })         
     });
 } 

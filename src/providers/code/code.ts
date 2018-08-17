@@ -8,6 +8,7 @@ import { Storage } from '@ionic/storage';
 export class CodeProvider {
   public myGlobalVar: string;
   private API_URL = 'https://kcode.com.br/kcode_2019/wp-json/code/search/?'
+  private APP_URL = 'https://kcode.com.br/kcode_2019/wp-json/code/search/?code_number=pesquisa777'
   // position: {latitude: -1.4194118, longitude: -48.4431067}
 
   constructor(
@@ -67,4 +68,19 @@ mostrarStorage(code: any){
     console.log('Your age is', val);
   });
 }
+
+getLinks(page:any) {
+  return new Promise((resolve, reject) => {
+    let url = this.APP_URL;
+    // alert(url);
+    this.http.get(url)
+      .subscribe((result: any) => {
+        resolve(result.json());
+      },
+      (error) => {
+        reject(error.json());
+      });
+  });
+}
+
 }
