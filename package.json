@@ -23,6 +23,7 @@
     "@ionic-native/background-mode": "^4.11.0",
     "@ionic-native/core": "~4.10.0",
     "@ionic-native/geolocation": "^4.11.0",
+    "@ionic-native/in-app-browser": "^4.12.2",
     "@ionic-native/sim": "^4.11.0",
     "@ionic-native/splash-screen": "~4.10.0",
     "@ionic-native/status-bar": "~4.10.0",
@@ -33,6 +34,7 @@
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-file": "^6.0.1",
     "cordova-plugin-geolocation": "^4.0.1",
+    "cordova-plugin-inappbrowser": "^3.0.0",
     "cordova-plugin-ionic": "^5.0.5",
     "cordova-plugin-ionic-keyboard": "^2.1.2",
     "cordova-plugin-ionic-webview": "^2.0.1",
@@ -71,7 +73,8 @@
         "WARN_DEBUG": "true",
         "UPDATE_API": "https://api.ionicjs.com",
         "MIN_BACKGROUND_DURATION": "30"
-      }
+      },
+      "cordova-plugin-inappbrowser": {}
     },
     "platforms": [
       "android"

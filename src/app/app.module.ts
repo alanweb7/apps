@@ -1,5 +1,6 @@
 import { NgModule, ErrorHandler, Injectable, Injector } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -81,6 +82,7 @@ export class MyErrorHandler implements ErrorHandler {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CodeProvider,
     Geolocation,
+    InAppBrowser,
     // BackgroundMode,
     Sim
   ]
