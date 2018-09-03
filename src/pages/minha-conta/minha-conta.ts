@@ -23,7 +23,7 @@ export class MinhaContaPage {
       toolbar: 'yes',
       hideurlbar: 'yes',
       hidenavigationbuttons: 'no',
-      location: 'yes',
+      location: 'no',
       hardwareback: 'yes',
     }
   
