@@ -20,12 +20,12 @@ export class MinhaContaPage {
 
   openWebpage(url: string){
     const options: InAppBrowserOptions = {
-      zoom: 'no',
-      toolbar: 'yes',
-      hideurlbar: 'yes',
-      hidenavigationbuttons: 'no',
-      location: 'no',
-      hardwareback: 'yes',
+    zoom: 'no',
+    toolbar: 'yes',
+    hideurlbar: 'yes',
+    hidenavigationbuttons: 'no',
+    location: 'yes',
+    hardwareback: 'yes',
     }
     const browser = this.inAppBrowser.create(url, '_blank', options);
   // mudou 2
