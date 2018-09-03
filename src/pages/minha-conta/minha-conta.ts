@@ -24,10 +24,9 @@ export class MinhaContaPage {
       toolbar: 'yes',
       hideurlbar: 'yes',
       hidenavigationbuttons: 'no',
-      location: 'yes',
+      location: 'no',
       hardwareback: 'yes',
     }
-  
     const browser = this.inAppBrowser.create(url, '_self', options);
   
   } 
