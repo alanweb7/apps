@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController} from 'ionic-angular';
+import { HomePage } from '../home/home';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 // @IonicPage()
 @Component({
@@ -23,12 +24,20 @@ export class MinhaContaPage {
       toolbar: 'yes',
       hideurlbar: 'yes',
       hidenavigationbuttons: 'no',
-      location: 'no',
+      location: 'yes',
       hardwareback: 'yes',
     }
   
     const browser = this.inAppBrowser.create(url, '_self', options);
   
   } 
+
+  pushPageHome(){
+
+      this.navCtrl.push(HomePage, {
+    
+      });
+ 
+  }
   
 }
