@@ -27,16 +27,8 @@ export class MinhaContaPage {
       location: 'no',
       hardwareback: 'yes',
     }
-    const browser = this.inAppBrowser.create(url, '_self', options);
-  // mudou 
+    const browser = this.inAppBrowser.create(url, '_blank', options);
+  // mudou 2
   } 
-
-  pushPageHome(){
-
-      this.navCtrl.push(HomePage, {
-    
-      });
- 
-  }
   
 }
