@@ -27,8 +27,9 @@ export class MinhaContaPage {
     toolbar: 'yes',
     hideurlbar: 'yes',
     hidenavigationbuttons: 'no',
-    location: 'no',
+    location: 'yes',
     hardwareback: 'yes',
+    closebuttoncaption:'<span data-icon=""></span>',
     irHome: this.pushPageHome(),
     }
     
@@ -40,12 +41,10 @@ export class MinhaContaPage {
 
   pushPageHome(){
 
-    this.navCtrl.push(HomePage, {
-
-    });
+    this.navCtrl.setRoot(HomePage);
 
   }
 
-  
+
 
 }
