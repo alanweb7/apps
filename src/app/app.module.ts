@@ -5,7 +5,6 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { HistoricoPage } from '../pages/historico/historico';
-import { EntrarPage } from '../pages/entrar/entrar';
 import { PesquisaPage } from '../pages/pesquisa/pesquisa';
 import { MinhaContaPage } from '../pages/minha-conta/minha-conta';
 import { VerConteDoPage } from '../pages/ver-conte-do/ver-conte-do';
@@ -57,7 +56,6 @@ export class MyErrorHandler implements ErrorHandler {
     HomePage,
     HistoricoPage,
     MinhaContaPage,
-    EntrarPage,
     PesquisaPage,
     VerConteDoPage,
     LinkExternoPage
@@ -75,7 +73,6 @@ export class MyErrorHandler implements ErrorHandler {
     HistoricoPage,
     PesquisaPage,        
     MinhaContaPage,
-    EntrarPage,
     VerConteDoPage,
     LinkExternoPage
   ],

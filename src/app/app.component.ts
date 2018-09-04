@@ -7,9 +7,6 @@ import { MinhaContaPage } from '../pages/minha-conta/minha-conta';
 import { HistoricoPage, } from '../pages/historico/historico';
 import { PesquisaPage, } from '../pages/pesquisa/pesquisa';
 import { HomePage } from '../pages/home/home';
-import { EntrarPage } from '../pages/entrar/entrar';
-
-
 
 
 @Component({
@@ -40,13 +37,7 @@ export class MyApp {
     this.navCtrl.setRoot(MinhaContaPage);
 
   }
-  goToEntrar(params){
-
-    if (!params) params = {};
-    this.navCtrl.setRoot(EntrarPage);
-
-  }
-  goToHistorico(params){
+   goToHistorico(params){
     if (!params) params = {};
     this.navCtrl.setRoot(HistoricoPage);
   }
