@@ -28,7 +28,7 @@ export class MinhaContaPage {
     hardwareback: 'yes',
     }
     
-    const browser = this.inAppBrowser.create(url, '_blank', options);
+    const browser = this.inAppBrowser.create(url, '_self', options);
   // mudou 2.3
   } 
   
