@@ -30,7 +30,7 @@ export class MinhaContaPage {
     location: 'yes',
     hardwareback: 'yes',
     closebuttoncaption:'Home',
-    closebuttoncolor:'#000',
+    closebuttoncolor:'#000000',
     irHome: this.pushPageHome(),
     }
     
