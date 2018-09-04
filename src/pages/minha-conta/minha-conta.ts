@@ -26,10 +26,10 @@ export class MinhaContaPage {
     zoom: 'no',
     toolbar: 'yes',
     hideurlbar: 'yes',
-    hidenavigationbuttons: 'no',
+    hidenavigationbuttons: 'yes',
     location: 'yes',
     hardwareback: 'yes',
-    closebuttoncaption:'<span data-icon=""></span>',
+    closebuttoncaption:'Home',
     irHome: this.pushPageHome(),
     }
     
