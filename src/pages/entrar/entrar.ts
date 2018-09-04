@@ -15,18 +15,17 @@ import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser'
   templateUrl: 'entrar.html',
 })
 export class EntrarPage {
-  url:string;
-
   constructor(public navCtrl: NavController, public navParams: NavParams, private inAppBrowser: InAppBrowser) {
   }
 
   ionViewDidLoad() {
-    this.openWebpage(this.url);
+    this.openWebpage();
     console.log('ionViewDidLoad EntrarPage');
   }
 
 
-  openWebpage(url: string){
+  openWebpage(){
+    var url = 'https://kcode.com.br/kcode_2020/meu-code';
     const options: InAppBrowserOptions = {
     zoom: 'no',
     toolbar: 'yes',
