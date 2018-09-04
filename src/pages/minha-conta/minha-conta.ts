@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController} from 'ionic-angular';
-import { HomePage } from '../home/home';
-import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
+// import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 // @IonicPage()
 @Component({
   selector: 'page-minha-conta',
@@ -10,26 +9,28 @@ import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser'
 export class MinhaContaPage {
   public url:string;
 
-  constructor(public navCtrl: NavController, private inAppBrowser: InAppBrowser) {
-    this.url = 'https://kcode.com.br/kcode_2020/meu-code';
+  constructor(public navCtrl: NavController, /* private inAppBrowser: InAppBrowser */) {
   }
 
   ionViewDidLoad(){
-    this.openWebpage(this.url);
+    this.openWebpage();
   }
 
-  openWebpage(url: string){
-    const options: InAppBrowserOptions = {
-    zoom: 'no',
-    toolbar: 'yes',
-    hideurlbar: 'yes',
-    hidenavigationbuttons: 'no',
-    location: 'no',
-    hardwareback: 'yes',
-    }
+  openWebpage(){
+    this.url = 'https://kcode.com.br/kcode_2020/meu-code';
+    // const options: InAppBrowserOptions = {
+    // zoom: 'no',
+    // toolbar: 'yes',
+    // hideurlbar: 'yes',
+    // hidenavigationbuttons: 'no',
+    // location: 'no',
+    // hardwareback: 'yes',
+    // }
     
-    const browser = this.inAppBrowser.create(url, '_self', options);
-  // mudou 2.3
+    // const browser = this.inAppBrowser.create(url, '_self', options);
+    // browser.insertCSS({ code: "body{color: red;" });
+    // browser.close();
+  // mudou 2.4
   } 
   
 }
