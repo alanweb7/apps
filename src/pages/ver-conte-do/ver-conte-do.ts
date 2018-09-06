@@ -21,14 +21,6 @@ export class VerConteDoPage {
   public video: any = {};
   public linkVimeo: any = {};
 
-
-// <iframe width="560" height="315" src="https://www.youtube.com/embed/VOfsEPLTjeM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
-
-// <iframe src="https://player.vimeo.com/video/286207416" width="640" height="1164" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-// <p><a href="https://vimeo.com/286207416">Untitled</a> from <a href="https://vimeo.com/user86476146">Spottec</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
-
-
   users: any[];
   page: number;
   imgSrc:any;
