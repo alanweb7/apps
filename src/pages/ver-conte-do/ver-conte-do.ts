@@ -111,7 +111,7 @@ handleIFrameLoadEvent(): void {
 // link vimeo
 console.log('link do user Vimeo fora...: ', user.ID_video);
 // this.video = { url : 'https://player.vimeo.com/video/286207416'};
-this.video = { url : 'https://player.vimeo.com/video/'+user.ID_video};
+this.video = { url : user.video};
 
   this.trustedVideoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(this.video.url);
 
