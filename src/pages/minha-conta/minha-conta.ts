@@ -21,7 +21,7 @@ export class MinhaContaPage {
 
 
   openWebpage(){
-    var url = 'https://kcode.com.br/kcode_2020/meu-code';
+    var url = 'https://kscode.com.br/ksc_2020/meu-code';
     const options: InAppBrowserOptions = {
     zoom: 'no',
     toolbar: 'yes',
