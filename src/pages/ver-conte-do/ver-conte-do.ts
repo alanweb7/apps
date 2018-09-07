@@ -20,6 +20,7 @@ import { Storage } from '@ionic/storage';
 export class VerConteDoPage {
   public video: any = {};
   public linkVimeo: any = {};
+  public galeria: any = {};
 
   users: any[];
   page: number;
@@ -100,10 +101,18 @@ handleIFrameLoadEvent(): void {
           var user = result.data[i];      
           this.users.push(user);
 
+// galeria
+this.galeria = [user.imagem1,user.imagem2,user.imagem3,user.imagem4];
+
+// Remove item 'seven' from array
+var filteredAry = this.galeria.filter(function(e) { return e !== "" })
+//=> ["three", "eleven"]
+this.galeria = filteredAry ;
 // link vimeo
-console.log('link do user Vimeo fora...: ', user.ID_video);
+console.log('link do user Vimeo fora...: ', user.ID_video, filteredAry);
 // this.video = { url : 'https://player.vimeo.com/video/286207416'};
 this.video = { url : user.video};
+if(this.video.url !== 'error'){
 
   this.trustedVideoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(this.video.url);
 
@@ -111,7 +120,12 @@ this.video = { url : user.video};
       content: 'Please wait...'
   });
 
+
   this.loading.present();
+
+
+} 
+
 
 console.log('url do vimeo dentro ...: ', this.video);
 // link vimeo final
