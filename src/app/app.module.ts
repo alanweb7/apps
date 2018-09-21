@@ -16,6 +16,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CodeProvider } from '../providers/code/code';
 // import { BackgroundMode } from '@ionic-native/background-mode';
+import { Deeplinks } from '@ionic-native/deeplinks';
 
 import { HttpModule } from '@angular/http';
 import { Sim } from '../../node_modules/@ionic-native/sim';
@@ -84,7 +85,8 @@ export class MyErrorHandler implements ErrorHandler {
     Geolocation,
     InAppBrowser,
     // BackgroundMode,
-    Sim
+    Sim,
+    Deeplinks
   ]
 })
 export class AppModule {}

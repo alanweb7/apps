@@ -8,6 +8,8 @@ import { HistoricoPage, } from '../pages/historico/historico';
 import { PesquisaPage, } from '../pages/pesquisa/pesquisa';
 import { HomePage } from '../pages/home/home';
 
+import { Deeplinks } from '@ionic-native/deeplinks';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -19,6 +21,7 @@ export class MyApp {
   constructor(platform: Platform, 
     statusBar: StatusBar, 
     splashScreen: SplashScreen,
+    private deeplinks: Deeplinks
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
