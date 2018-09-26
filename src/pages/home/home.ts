@@ -5,6 +5,7 @@ import { VerConteDoPage } from '../ver-conte-do/ver-conte-do';
 import { PesquisaPage } from '../pesquisa/pesquisa';
 
 import { Geolocation } from '@ionic-native/geolocation';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { Sim } from '@ionic-native/sim';
 
@@ -27,6 +28,7 @@ export class HomePage {
     private geo: Geolocation,
     private platform: Platform,
     private sim: Sim,
+    private socialSharing: SocialSharing
   ) {
       this.pushInfoPhone();  
     }
@@ -122,6 +124,15 @@ pushPageCode(){
 pushPagePesquisa(){
   this.navCtrl.push(PesquisaPage, {
 
+  });
+}
+
+// compartilhar social share
+shareSheetShare() {
+  this.socialSharing.share("KSCODE - Tudo se conecta aqui! ->", "Share subject", "", "https://play.google.com/store/apps/details?id=com.kcode360.kcode").then(() => {
+    console.log("shareSheetShare: Success");
+  }).catch(() => {
+    console.error("shareSheetShare: failed");
   });
 }
 

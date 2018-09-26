@@ -2,4 +2,8 @@ page-home {
     button.btn_30 {
         width: 30.5%;
     }
+    .item-md.item-block .item-inner {
+        padding-right: 8px;
+        border-bottom: none !important;
+    }
 }

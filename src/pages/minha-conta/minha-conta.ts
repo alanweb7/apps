@@ -27,14 +27,14 @@ export class MinhaContaPage {
     toolbar: 'yes',
     hideurlbar: 'yes',
     hidenavigationbuttons: 'yes',
-    location: 'yes',
+    location: 'no',
     hardwareback: 'yes',
     closebuttoncaption:'Home',
     closebuttoncolor:'#000000',
-    irHome: this.pushPageHome(),
+    // irHome: this.pushPageHome(),
     }
     
-    const browser = this.inAppBrowser.create(url, '_self', options);
+    const browser = this.inAppBrowser.create(url, '_system', options);
     browser.insertCSS({ code: "body{color: blue;" });
   // mudou 2.4
   } 
