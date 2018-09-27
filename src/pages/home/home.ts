@@ -34,23 +34,20 @@ export class HomePage {
     private socialSharing: SocialSharing,
     private inAppBrowser: InAppBrowser
   ) {
-      this.pushInfoPhone();  
+      // this.pushInfoPhone();  
     }
     ionViewDidLoad(){
-    const cascate = {
-      func1: function() {
-        alert('bt1 func1'); 
+    var cascate = {
+      func1: {
+        1:this.pushGeoinfo(),
       },
-      func2: function() {
-        alert('bt1 func2'); 
-      },
-      func3: function() {
-        alert('bt1 func3'); 
+      func2: {
+        2:this.pushInfoPhone(), 
       }
     };
-    
-   this.pushGeoinfo(); 
-   setTimeout(()=>cascate,3000);
+    console.log(cascate.func1, cascate.func2);
+  //  this.pushGeoinfo(); 
+ 
   //  alert('O Aplicativo está sendo preparado...');
   //  this.pushInfoPhone(); 
     }  
