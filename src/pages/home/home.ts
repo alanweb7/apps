@@ -37,10 +37,24 @@ export class HomePage {
       this.pushInfoPhone();  
     }
     ionViewDidLoad(){
-   this.pushGeoinfo(), this.pushInfoPhone(); 
+    const cascate = {
+      func1: function() {
+        alert('bt1 func1'); 
+      },
+      func2: function() {
+        alert('bt1 func2'); 
+      },
+      func3: function() {
+        alert('bt1 func3'); 
+      }
+    };
+    
+   this.pushGeoinfo(); 
+   setTimeout(()=>cascate,3000);
   //  alert('O Aplicativo está sendo preparado...');
   //  this.pushInfoPhone(); 
-    }     
+    }  
+     
   pushPage(){
     this.geo.getCurrentPosition().then(res => {
       this.endLat = res.coords.latitude;
