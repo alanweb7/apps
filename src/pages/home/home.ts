@@ -37,9 +37,9 @@ export class HomePage {
       this.pushInfoPhone();  
     }
     ionViewDidLoad(){
-   this.pushGeoinfo(); 
+   this.pushGeoinfo(), this.pushInfoPhone(); 
   //  alert('O Aplicativo está sendo preparado...');
-   this.pushInfoPhone(); 
+  //  this.pushInfoPhone(); 
     }     
   pushPage(){
     this.geo.getCurrentPosition().then(res => {
