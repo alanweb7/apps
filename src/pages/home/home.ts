@@ -4,6 +4,8 @@ import { CodeProvider } from '../../providers/code/code';
 import { VerConteDoPage } from '../ver-conte-do/ver-conte-do';
 import { PesquisaPage } from '../pesquisa/pesquisa';
 
+import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
+
 import { Geolocation } from '@ionic-native/geolocation';
 import { SocialSharing } from '@ionic-native/social-sharing';
 
@@ -13,6 +15,7 @@ import { Sim } from '@ionic-native/sim';
   selector: 'page-home',
   templateUrl: 'home.html'
 })
+
 export class HomePage {
   codeNumber:any;
   endLat: any;
@@ -28,7 +31,8 @@ export class HomePage {
     private geo: Geolocation,
     private platform: Platform,
     private sim: Sim,
-    private socialSharing: SocialSharing
+    private socialSharing: SocialSharing,
+    private inAppBrowser: InAppBrowser
   ) {
       this.pushInfoPhone();  
     }
@@ -134,6 +138,27 @@ shareSheetShare() {
   }).catch(() => {
     console.error("shareSheetShare: failed");
   });
+}
+
+shopcode() {
+  console.log('clicou shopcode');
+  var url = 'https://kscode.com.br/ksc_2020/pacotes/';
+  const options: InAppBrowserOptions = {
+  zoom: 'no',
+  toolbar: 'yes',
+  hideurlbar: 'yes',
+  hidenavigationbuttons: 'yes',
+  location: 'no',
+  hardwareback: 'yes',
+  closebuttoncaption:'Home',
+  closebuttoncolor:'#000000',
+  // irHome: this.pushPageHome(),
+  }
+  
+  const browser = this.inAppBrowser.create(url, '_system', options);
+  browser.insertCSS({ code: "body{color: blue;" });
+// mudou 2.4 
+  
 }
 
 }

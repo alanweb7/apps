@@ -6,4 +6,13 @@ page-home {
         padding-right: 8px;
         border-bottom: none !important;
     }
+    ion-item#bar-tools {
+        width: 40%;
+        float: left;
+    }
+    ion-item#bar-tools2 {
+        width: 50%;
+        float: right;
+    }
+
 }
