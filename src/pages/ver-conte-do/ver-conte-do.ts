@@ -114,8 +114,7 @@ handleIFrameLoadEvent(): void {
 
 var $countVideos = user.album_vimeo.length;
 console.log('numero de videos na galeria: ', $countVideos);
-console.log('Vimeo galeria: ', user.album_vimeo);
-            this.video_found = false;        
+console.log('Vimeo galeria: ', user.album_vimeo);       
           if($countVideos > 0){ 
             this.video_found = true; 
             this.galeriaVideos = [];        

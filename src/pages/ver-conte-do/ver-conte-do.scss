@@ -26,6 +26,13 @@ page-ver-conte-do {
     /* max-width: 100%; */
     height: 100% !important;
     /* max-height: 100%; */
-}     
+} 
+ion-icon.icon.icon-md {
+    font-size: xx-large;
+    color: #fff;
+}
+.swiper-button-next, .swiper-button-prev{
+    background-image: none;
+}    
 
 }
