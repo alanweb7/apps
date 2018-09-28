@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { Loading, NavController, NavParams, InfiniteScroll, LoadingController } from 'ionic-angular';
 import { ViewChild } from '@angular/core';
 
+import { Slides } from 'ionic-angular';
+
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
 // import { BackgroundMode } from '@ionic-native/background-mode';
@@ -13,6 +15,8 @@ import { HomePage } from "./../home/home";
 
 import { Storage } from '@ionic/storage';
 // @IonicPage()
+
+
 @Component({
   selector: 'page-ver-conte-do',
   templateUrl: 'ver-conte-do.html'
@@ -21,6 +25,8 @@ export class VerConteDoPage {
   public video: any = {};
   public linkVimeo: any = {};
   public galeria: any = {};
+  galeriaVideos: any[];
+  video_found: any = false;
 
   users: any[];
   page: number;
@@ -28,6 +34,7 @@ export class VerConteDoPage {
   showhidefavorite:any=1;
 
   @ViewChild(InfiniteScroll) infiniteScroll: InfiniteScroll;
+  @ViewChild('slider') slides: Slides;
   @ViewChild('mySlider') mySlider: any;
   @ViewChild('videoPlayer') mVideoPlayer: any ;
   @ViewChild('iframe') iframe: any;
@@ -88,7 +95,6 @@ handleIFrameLoadEvent(): void {
   this.loading.dismiss();
 }
 
-
   getAllUsers(page: any, video: any) {
 
     // console.log('Pagina conteudo');
@@ -97,47 +103,39 @@ handleIFrameLoadEvent(): void {
       .then(
         (result: any) => {
         console.log(result);
+        
         for (var i = 0; i < result.data.length; i++) {
           var user = result.data[i];      
           this.users.push(user);
 
-// galeria
-this.galeria = [user.imagem1,user.imagem2,user.imagem3,user.imagem4];
-
-// Remove item 'seven' from array
-var filteredAry = this.galeria.filter(function(e) { return e !== "" })
-//=> ["three", "eleven"]
-this.galeria = filteredAry ;
-// link vimeo
-console.log('link do user Vimeo fora...: ', user.ID_video, filteredAry);
-// this.video = { url : 'https://player.vimeo.com/video/286207416'};
-this.video = { url : user.video};
-if(this.video.url !== 'error'){
-
-  this.trustedVideoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(this.video.url);
-
-  this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-  });
-
-
-  this.loading.present();
-
-
-} 
-
-
-console.log('url do vimeo dentro ...: ', this.video);
-// link vimeo final
-
         }
+
+       // this.video = { url : 'https://player.vimeo.com/video/286207416'};
+
+var $countVideos = user.album_vimeo.length;
+console.log('numero de videos na galeria: ', $countVideos);
+console.log('Vimeo galeria: ', user.album_vimeo);
+            this.video_found = false;        
+          if($countVideos > 0){ 
+            this.video_found = true; 
+            this.galeriaVideos = [];        
+            for (var y = 0; y < user.album_vimeo.length; y++) {
+            var albumVideo = user.album_vimeo[y];   
+                 
+            albumVideo.video_link = this.domSanitizer.bypassSecurityTrustResourceUrl(albumVideo.video_link);          
+             this.galeriaVideos.push(albumVideo);
+
+            }
+
+          }  
+
+
 
       })
       .catch((error: any) => {
         // this.toast.create({ message: 'Erro ao listar os usuários. Erro: ' + error.error, position: 'botton', duration: 3000 }).present();
       });
-
-
+   
   }
 
   pushHome(){
@@ -153,7 +151,7 @@ console.log('url do vimeo dentro ...: ', this.video);
   
     setTimeout(() => {
       loading.dismiss();
-    }, 5000);
+    }, 4000);
   } 
 
   mostrarStorage(){
@@ -162,6 +160,14 @@ console.log('url do vimeo dentro ...: ', this.video);
   this.storage.get('historico').then((val) => {
     console.log('Historico: ', val);
   });
+}
+
+slideNext(){
+  this.slides.slideNext();
+}
+
+slidePrev(){
+  this.slides.slidePrev();
 }
 
   }

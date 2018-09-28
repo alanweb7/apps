@@ -11,29 +11,51 @@
 <ion-content padding id="page5"  fullscreen>
   <div call="total" *ngFor="let user of users"> 
   <div *ngIf="user.id !== 'error'">
-  <h4 id="verConteDo-heading2" style="color:#000000;" *ngFor="let user of users">
-    {{ user.titulo }}
+  <h4 id="verConteDo-heading2" style="color:#000000;" >
+   {{user.titulo}}
   </h4>
   <div class="spacer" style="width:300px;height:15px;" id="verConteDo-spacer4" ></div>
 
-    <!-- <div style="padding:181.82% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/286207416?autoplay=1" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
-    <p><a href="https://vimeo.com/286207416">Untitled</a> from <a href="https://vimeo.com/user86476146">Spottec</a> on <a href="https://vimeo.com">Vimeo</a>.</p> -->
-<div class="content_video" *ngFor="let user of users">
-<div [ngClass]="{'video-horizontal' : user.formato_video === 'h','video-vertical' : user.formato_video === 'v' }" [hidden]="user.video === 'error'">  
-    <iframe width="100%"
-            height="auto"
-            [src]="trustedVideoUrl ? trustedVideoUrl : null"
-            (load)="trustedVideoUrl ? handleIFrameLoadEvent() : null"
-            frameborder="0"
-            webkitallowfullscreen 
-            mozallowfullscreen 
-            allowfullscreen
-            style="position:absolute;top:0;left:0;width:100%;height:100%;">
-    </iframe>
-</div>
-</div>
 <!-- <script src="https://player.vimeo.com/api/player.js"></script> -->
+  <!-- slide de videos  -->
   <div class="spacer" style="width:300px;height:15px;" id="verConteDo-spacer5"></div>
+<div style="position:relative;width:100%;" [hidden]=" !video_found"> 
+            <ion-slides 
+            pager
+            control 
+            paginationClickable=true
+            initialSlide=0
+            loop=true
+            autoplay=0
+            speed=3000 
+            class="slide_code">
+                <ion-slide #slider *ngFor="let user of galeriaVideos">
+                    <div class="slide-galery" style="width: 100%;height: 250px;">
+                          <div class="arrastar-slide"></div>
+                        <!-- <div [ngClass]="{'video-horizontal' : user.formato_video === 'h','video-vertical' : user.formato_video === 'v' }" [hidden]="user.video === 'error'">   -->
+                            <iframe width="100%"
+                                    height="auto"
+                                    [src]="user.video_link ? user.video_link : null"
+                                    (load)="user.video_link ? handleIFrameLoadEvent() : null"
+                                    frameborder="0"
+                                    webkitallowfullscreen 
+                                    mozallowfullscreen 
+                                    allowfullscreen
+                                    style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                            </iframe>
+                        <!-- </div> -->
+<!-- <h2>{{user.url}}</h2> -->
+                    </div>
+                </ion-slide>                    
+              </ion-slides>
+
+              
+              <div class="swiper-button-next" (click)="slideNext()"></div>
+              <div class="swiper-button-prev" (click)="slidePrev()"></div>
+
+</div>  
+  <!-- slide de fotos  -->
+<div class="spacer" style="width:300px;height:15px;" id="verConteDo-spacer59"></div>
 <div style="position:relative;width:100%;"> 
             <ion-slides paginationClickable=true
             initialSlide=0
@@ -41,12 +63,13 @@
             autoplay=5000
             speed=2000 
             class="slide_code">
-                <ion-slide #mySlider *ngFor="let imagem of galeria">
-                    <img src="{{imagem}}">
+                <ion-slide #mySlider *ngFor="let imagem of user.galeria">
+                    <div class="slide-galery" style="width: 100%;height: 250px;">
+                      <img src="{{imagem.img_link}}" alt="" style="width: 100%;height: auto;">
+                    </div>
                 </ion-slide>
               </ion-slides>
-</div>    
-
+</div>
   <div id="verConteDo-markdown2" class="show-list-numbers-and-dots">
     <p style="color:#000000;" *ngFor="let user of users">
       {{ user.descricao }}
@@ -67,6 +90,9 @@
     </ion-item-sliding>
   </a>       
   </ion-list>
+  <ion-item *ngFor="let video of users.album_vimeo">
+    <h3 class="video.video_link">video n.</h3><br>
+  </ion-item>
   <h4 id="verConteDo-heading3" ng-show="faleConosco" style="color:#000000;text-align:center;">
     Entre em Contato
   </h4>

@@ -16,5 +16,16 @@ page-ver-conte-do {
         font-size: xx-large;
         text-transform: uppercase;
     }      
+    .slide-galery {
+        width:100%;
+       height: 250px;
+    
+    } 
+    .swiper-slide img {
+    width: auto !important;
+    /* max-width: 100%; */
+    height: 100% !important;
+    /* max-height: 100%; */
+}     
 
 }
