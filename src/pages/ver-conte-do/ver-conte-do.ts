@@ -119,17 +119,16 @@ console.log('Vimeo galeria: ', user.album_vimeo);
             this.video_found = true; 
             this.galeriaVideos = [];        
             for (var y = 0; y < user.album_vimeo.length; y++) {
-            var albumVideo = user.album_vimeo[y];   
+
+             
+            var albumVideo = this.domSanitizer.bypassSecurityTrustResourceUrl(user.album_vimeo[y].video_link);   
                  
-            albumVideo.video_link = this.domSanitizer.bypassSecurityTrustResourceUrl(albumVideo.video_link);          
+            albumVideo['video_link'] = albumVideo;          
              this.galeriaVideos.push(albumVideo);
 
             }
-
-          }  
-
-
-
+            console.log('galeria pronta: ',this.galeriaVideos );
+          }
       })
       .catch((error: any) => {
         // this.toast.create({ message: 'Erro ao listar os usuários. Erro: ' + error.error, position: 'botton', duration: 3000 }).present();
@@ -150,7 +149,8 @@ console.log('Vimeo galeria: ', user.album_vimeo);
   
     setTimeout(() => {
       loading.dismiss();
-    }, 4000);
+    }, 3000);
+    
   } 
 
   mostrarStorage(){
