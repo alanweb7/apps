@@ -34,7 +34,7 @@ export class MinhaContaPage {
     // irHome: this.pushPageHome(),
     }
     
-    const browser = this.inAppBrowser.create(url, '_system', options);
+    const browser = this.inAppBrowser.create(url, '_blank', options);
     browser.insertCSS({ code: "body{color: blue;" });
   // mudou 2.4
   } 
