@@ -33,8 +33,7 @@ export class MinhaContaPage {
     closebuttoncolor:'#000000',
     // irHome: this.pushPageHome(),
     }
-    
-    const browser = this.inAppBrowser.create(url, '_blank', options);
+    const browser = this.inAppBrowser.create(url, '_system', options);
     browser.insertCSS({ code: "body{color: blue;" });
   // mudou 2.4
   } 
