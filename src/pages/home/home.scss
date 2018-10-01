@@ -7,12 +7,15 @@ page-home {
         border-bottom: none !important;
     }
     ion-item#bar-tools {
-        width: 40%;
-        float: left;
+        // width: 40%;
+        // float: left;
     }
     ion-item#bar-tools2 {
-        width: 50%;
-        float: right;
+        // width: 50%;
+        // float: right;
+        position: absolute;
+        top: 90%;
+        
     }
 
 }
