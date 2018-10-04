@@ -10,6 +10,8 @@ import { HomePage } from '../pages/home/home';
 
 import { Deeplinks } from '@ionic-native/deeplinks';
 
+import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -21,7 +23,8 @@ export class MyApp {
   constructor(platform: Platform, 
     statusBar: StatusBar, 
     splashScreen: SplashScreen,
-    private deeplinks: Deeplinks
+    private deeplinks: Deeplinks,
+    private inAppBrowser: InAppBrowser
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -36,8 +39,27 @@ export class MyApp {
   }
   goToMinhaConta(params){
 
-    if (!params) params = {};
-    this.navCtrl.setRoot(MinhaContaPage);
+    var url = 'https://kscode.com.br/ksc_2020/meu-code';
+    const options: InAppBrowserOptions = {
+    zoom: 'no',
+    toolbar: 'yes',
+    hideurlbar: 'yes',
+    hidenavigationbuttons: 'yes',
+    location: 'no',
+    hardwareback: 'yes',
+    closebuttoncaption:'Home',
+    closebuttoncolor:'#000000',
+    // irHome: this.pushPageHome(),
+    }
+    const browser = this.inAppBrowser.create(url, '_system', options);
+    browser.insertCSS({ code: "body{color: blue;" });
+  // mudou 2.4
+
+
+
+
+    // if (!params) params = {};
+    // this.navCtrl.setRoot(MinhaContaPage);
 
   }
    goToHistorico(params){
