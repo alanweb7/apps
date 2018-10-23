@@ -20,6 +20,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { CodeProvider } from '../providers/code/code';
 // import { BackgroundMode } from '@ionic-native/background-mode';
 import { Deeplinks } from '@ionic-native/deeplinks';
+import { OneSignal } from '@ionic-native/onesignal';
 
 import { HttpModule } from '@angular/http';
 import { Sim } from '../../node_modules/@ionic-native/sim';
@@ -90,7 +91,8 @@ export class MyErrorHandler implements ErrorHandler {
     SocialSharing,
     // BackgroundMode,
     Sim,
-    Deeplinks
+    Deeplinks,
+    OneSignal
   ]
 })
 export class AppModule {}

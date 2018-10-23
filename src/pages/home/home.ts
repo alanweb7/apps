@@ -5,6 +5,7 @@ import { VerConteDoPage } from '../ver-conte-do/ver-conte-do';
 import { PesquisaPage } from '../pesquisa/pesquisa';
 
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
+import { OneSignal } from '@ionic-native/onesignal';
 
 import { Geolocation } from '@ionic-native/geolocation';
 import { SocialSharing } from '@ionic-native/social-sharing';
@@ -32,9 +33,11 @@ export class HomePage {
     private platform: Platform,
     private sim: Sim,
     private socialSharing: SocialSharing,
-    private inAppBrowser: InAppBrowser
+    private inAppBrowser: InAppBrowser,
+    private oneSignal: OneSignal
   ) {
       // this.pushInfoPhone();  
+      this.oneSignalApp();
     }
     ionViewDidLoad(){
     var cascate = {
@@ -171,5 +174,40 @@ shopcode() {
 // mudou 2.4 
   
 }
+
+// push notification onesignal
+oneSignalApp(){
+  this.oneSignal.startInit('d9687a3a-3df5-4565-b183-653e84ed8207', '8700496258');
+
+  this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
+  
+  this.oneSignal.handleNotificationReceived().subscribe(() => {
+   // do something when notification is received
+  //  alert('notification is received');
+  });
+  
+  this.oneSignal.handleNotificationOpened().subscribe(() => {
+    // do something when a notification is opened
+    // alert('notification is opened');
+  });
+  
+  this.oneSignal.endInit();
+
+  this.oneSignal.getIds().then((id) => {
+    console.log(id);
+    // let alert = this.alertCtrl.create({
+    //     title: 'the onesignal ids object',
+    //     message: JSON.stringify(id),
+    //     buttons: [{
+    //       text: 'Ok',
+    //       role: 'ok'
+    //     }]
+    //   });
+    //   alert.present();
+  });        
+
+}
+
+
 
 }
