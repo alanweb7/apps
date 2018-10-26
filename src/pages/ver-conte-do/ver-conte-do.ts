@@ -58,7 +58,7 @@ export class VerConteDoPage {
     // private alertCtrl: AlertController
             )
     {  
-      this.info = navParams.get('info');
+
     
     }
 
@@ -82,8 +82,8 @@ handleIFrameLoadEvent(): void {
 }
 
 registerPushTag(){
-
-  alert(this.info);
+  var infomation = this.navParams.get('info');
+  alert(infomation.code);
  
   
 // grava o code no push
@@ -91,14 +91,15 @@ this.oneSignal.startInit('d9687a3a-3df5-4565-b183-653e84ed8207', '8700496258');
 this.oneSignal.endInit();
 this.oneSignal.getIds().then((id) => {
   console.log(id);
-var code = this.info.code;
-if(code === ''){
- code = 'vitoria';  
-}
+var codepush = infomation.code;
+  alert(codepush);
+// if(code === ''){
+//  code = 'vitoria';  
+// }
 
-var  myObjStr = '{"'+code+'":true,"age":2,"favoriteFood":"Steak"}';
-var  keyPush = JSON.parse(myObjStr);
-alert('dado do push register Tag: '+keyPush);
+// var  myObjStr = '{"'+code+'":true,"age":2,"favoriteFood":"Steak"}';
+// var  keyPush = JSON.parse(myObjStr);
+// alert('dado do push register Tag: '+keyPush);
 
 this.oneSignal.sendTags(
   {code:true}
