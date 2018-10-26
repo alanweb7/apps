@@ -65,6 +65,7 @@ this.oneSignal.startInit('d9687a3a-3df5-4565-b183-653e84ed8207', '8700496258');
 this.oneSignal.endInit();
 this.oneSignal.getIds().then((id) => {
   console.log(id);
+  
   // let alert = this.alertCtrl.create({
   //     title: 'the onesignal ids object',
   //     message: JSON.stringify(id),
