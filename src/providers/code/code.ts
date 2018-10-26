@@ -65,7 +65,7 @@ this.oneSignal.startInit('d9687a3a-3df5-4565-b183-653e84ed8207', '8700496258');
 this.oneSignal.endInit();
 this.oneSignal.getIds().then((id) => {
   console.log(id);
-  
+
   // let alert = this.alertCtrl.create({
   //     title: 'the onesignal ids object',
   //     message: JSON.stringify(id),
@@ -77,9 +77,12 @@ this.oneSignal.getIds().then((id) => {
   //   alert.present();
 // registrando tags
 
-this.oneSignal.sendTags({
-code: true,
-});
+var  myObjStr = '{"'+code+'":true,"age":2,"favoriteFood":"Steak"}';
+var  keyPush = JSON.parse(myObjStr);
+
+this.oneSignal.sendTags(
+  keyPush
+  );
 
 
 });
