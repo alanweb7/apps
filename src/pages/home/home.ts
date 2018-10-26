@@ -75,6 +75,7 @@ export class HomePage {
         telephone: this.global.myGlobalVar
       }
     });
+
   }
 
 pushGeoinfo(){
@@ -208,6 +209,25 @@ oneSignalApp(){
 
 }
 
+registerPushTag(){
+  this.oneSignal.startInit('d9687a3a-3df5-4565-b183-653e84ed8207', '8700496258');
 
+  this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
+  
+  this.oneSignal.handleNotificationReceived().subscribe(() => {
+   // do something when notification is received
+  //  alert('notification is received');
+  });
+  
+  this.oneSignal.handleNotificationOpened().subscribe(() => {
+    // do something when a notification is opened
+    // alert('notification is opened');
+  });
+  
+  this.oneSignal.endInit();
+
+
+
+}
 
 }

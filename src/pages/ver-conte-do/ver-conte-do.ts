@@ -14,6 +14,7 @@ import {Platform} from 'ionic-angular';
 import { HomePage } from "./../home/home";
 
 import { Storage } from '@ionic/storage';
+import { OneSignal } from '@ionic-native/onesignal';
 // @IonicPage()
 
 
@@ -31,6 +32,7 @@ export class VerConteDoPage {
   users: any[];
   page: number;
   imgSrc:any;
+  info:any;
   showhidefavorite:any=1;
 
   @ViewChild(InfiniteScroll) infiniteScroll: InfiniteScroll;
@@ -50,33 +52,16 @@ export class VerConteDoPage {
     private codeProvider: CodeProvider,
     public loadingCtrl: LoadingController,
     private storage: Storage,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    private oneSignal: OneSignal,
     // private backgroundMode: BackgroundMode,
     // private alertCtrl: AlertController
             )
     {  
-    let id = navParams.get('info'); 
-    // console.log(id);
-  
+      this.info = navParams.get('data');
+    
+    }
 
-// funcao background mode 
-// platform.ready().then(() => {
-//   backgroundMode.enable();
-//   backgroundMode.on('activate').subscribe(() => {
-
-//     const alert = this.alertCtrl.create({
-//       title: 'New Friend!',
-//       subTitle: 'Your friend, Obi wan Kenobi, just accepted your friend request!',
-//       buttons: ['OK']
-//     });
-//     setTimeout(()=>alert.present(),3000);
-
-
-//   });
-// });
-
-// funcao background mode 
-}
 ionViewDidLoad(){
   this.presentLoadingDefault();
   // this.mostrarStorage();
@@ -87,12 +72,42 @@ ionViewDidLoad(){
     this.users = [];
     this.page = this.navParams.get('info');
     this.getAllUsers(this.page, this.video);
+    this.registerPushTag();
   }
 
 
 
 handleIFrameLoadEvent(): void {
   this.loading.dismiss();
+}
+
+registerPushTag(){
+
+  alert(this.info);
+ 
+  
+// grava o code no push
+this.oneSignal.startInit('d9687a3a-3df5-4565-b183-653e84ed8207', '8700496258');
+this.oneSignal.endInit();
+this.oneSignal.getIds().then((id) => {
+  console.log(id);
+var code = this.info.code;
+if(code === ''){
+ code = 'vitoria';  
+}
+
+var  myObjStr = '{"'+code+'":true,"age":2,"favoriteFood":"Steak"}';
+var  keyPush = JSON.parse(myObjStr);
+alert('dado do push register Tag: '+keyPush);
+
+this.oneSignal.sendTags(
+  keyPush
+  );
+
+
+});
+// final da função que grava o code no push  
+
 }
 
   getAllUsers(page: any, video: any) {
