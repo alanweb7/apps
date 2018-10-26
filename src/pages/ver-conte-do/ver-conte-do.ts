@@ -58,7 +58,7 @@ export class VerConteDoPage {
     // private alertCtrl: AlertController
             )
     {  
-      this.info = navParams.get('data');
+      this.info = navParams.get('info');
     
     }
 
@@ -101,7 +101,7 @@ var  keyPush = JSON.parse(myObjStr);
 alert('dado do push register Tag: '+keyPush);
 
 this.oneSignal.sendTags(
-  keyPush
+  {code:true}
   );
 
 
