@@ -79,7 +79,7 @@ this.oneSignal.getIds().then((id) => {
 
 var  myObjStr = '{"'+code+'":true,"age":2,"favoriteFood":"Steak"}';
 var  keyPush = JSON.parse(myObjStr);
-console.log('dado do push register Tag: ',keyPush);
+alert('dado do push register Tag: '+keyPush);
 
 this.oneSignal.sendTags(
   keyPush
