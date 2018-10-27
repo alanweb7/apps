@@ -1,19 +1,18 @@
 import { CodeProvider } from './../../providers/code/code';
 import { Component } from '@angular/core';
-import { Loading, NavController, NavParams, InfiniteScroll, LoadingController } from 'ionic-angular';
+import { Loading, NavController, NavParams, InfiniteScroll, LoadingController, AlertController } from 'ionic-angular';
 import { ViewChild } from '@angular/core';
 
 import { Slides } from 'ionic-angular';
 
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
-// import { BackgroundMode } from '@ionic-native/background-mode';
-import { AlertController } from 'ionic-angular';
 import {Platform} from 'ionic-angular';
 
 import { HomePage } from "./../home/home";
 
 import { Storage } from '@ionic/storage';
+import { OneSignal } from '@ionic-native/onesignal';
 
 // @IonicPage()
 
@@ -47,16 +46,17 @@ export class VerConteDoPage {
   constructor(
     platform: Platform,
     public navCtrl: NavController,
+    private alertCtrl: AlertController,
     public navParams: NavParams,
     private codeProvider: CodeProvider,
     public loadingCtrl: LoadingController,
     private storage: Storage,
     private domSanitizer: DomSanitizer,
-    // private backgroundMode: BackgroundMode,
-    // private alertCtrl: AlertController
+    private oneSignal: OneSignal,
             )
     {  
 
+      this.myIdOnesignal();
     
     }
 
@@ -149,5 +149,39 @@ slideNext(){
 slidePrev(){
   this.slides.slidePrev();
 }
+
+myIdOnesignal(){
+  this.oneSignal.startInit('d9687a3a-3df5-4565-b183-653e84ed8207', '8700496258');
+
+
+  this.oneSignal.endInit();
+  this.oneSignal.getIds().then((id) => {
+    console.log(id);
+    let alert = this.alertCtrl.create({
+        title: 'the onesignal ids object',
+        message: JSON.stringify(id),
+        buttons: [{
+          text: 'Ok',
+          role: 'ok'
+        }]
+      });
+
+// registrando tags
+
+this.oneSignal.sendTags({
+code: 'vitoria',
+code1: 'vitoria',
+code2: 'rafael'
+});
+
+
+      alert.present();
+
+
+  });
+
+
+}
+
 
   }
