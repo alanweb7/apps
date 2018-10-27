@@ -14,9 +14,8 @@ import {Platform} from 'ionic-angular';
 import { HomePage } from "./../home/home";
 
 import { Storage } from '@ionic/storage';
-import { OneSignal } from '@ionic-native/onesignal';
-// @IonicPage()
 
+// @IonicPage()
 
 @Component({
   selector: 'page-ver-conte-do',
@@ -53,7 +52,6 @@ export class VerConteDoPage {
     public loadingCtrl: LoadingController,
     private storage: Storage,
     private domSanitizer: DomSanitizer,
-    private oneSignal: OneSignal,
     // private backgroundMode: BackgroundMode,
     // private alertCtrl: AlertController
             )
@@ -72,43 +70,11 @@ ionViewDidLoad(){
     this.users = [];
     this.page = this.navParams.get('info');
     this.getAllUsers(this.page, this.video);
-    this.registerPushTag();
+
   }
-
-
 
 handleIFrameLoadEvent(): void {
   this.loading.dismiss();
-}
-
-registerPushTag(){
-  var infomation = this.navParams.get('info');
-  alert(infomation.code);
- 
-  
-// grava o code no push
-this.oneSignal.startInit('d9687a3a-3df5-4565-b183-653e84ed8207', '8700496258');
-this.oneSignal.endInit();
-this.oneSignal.getIds().then((id) => {
-  console.log(id);
-var codepush = infomation.code;
-  alert(codepush);
-// if(code === ''){
-//  code = 'vitoria';  
-// }
-
-// var  myObjStr = '{"'+code+'":true,"age":2,"favoriteFood":"Steak"}';
-// var  keyPush = JSON.parse(myObjStr);
-// alert('dado do push register Tag: '+keyPush);
-
-this.oneSignal.sendTags(
-  {code:true}
-  );
-
-
-});
-// final da função que grava o code no push  
-
 }
 
   getAllUsers(page: any, video: any) {
@@ -136,7 +102,6 @@ console.log('Vimeo galeria: ', user.album_vimeo);
             this.galeriaVideos = [];        
             for (var y = 0; y < user.album_vimeo.length; y++) {
 
-             
             var albumVideo = this.domSanitizer.bypassSecurityTrustResourceUrl(user.album_vimeo[y].video_link);   
                  
             albumVideo['video_link'] = albumVideo;          

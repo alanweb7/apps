@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { Storage } from '@ionic/storage';
-
+import { OneSignal } from '@ionic-native/onesignal';
 
 @Injectable()
 export class CodeProvider {
@@ -16,7 +16,7 @@ export class CodeProvider {
   constructor(
     public http: Http,
     private storage: Storage,
-
+    private oneSignal: OneSignal,
   ) { }
 
   getAll(page: any) {
@@ -60,6 +60,30 @@ export class CodeProvider {
   }
 //funcao que grava o code no historico
 mostrarStorage(code: any){
+// grava o code no push
+this.oneSignal.startInit('d9687a3a-3df5-4565-b183-653e84ed8207', '8700496258');
+this.oneSignal.endInit();
+this.oneSignal.getIds().then((id) => {
+  console.log(id);
+  // let alert = this.alertCtrl.create({
+  //     title: 'the onesignal ids object',
+  //     message: JSON.stringify(id),
+  //     buttons: [{
+  //       text: 'Ok',
+  //       role: 'ok'
+  //     }]
+  //   });
+  //   alert.present();
+// registrando tags
+
+this.oneSignal.sendTags({
+"vitoria de jesus": true,
+});
+
+
+});
+// final da função que grava o code no push
+
 
   // Or to get a key/value pair
   this.storage.get('name').then((val) => {
@@ -69,8 +93,9 @@ mostrarStorage(code: any){
     }else{
       this.storage.set('name', '{code:'+code+'},');
     }
-    console.log('Your age is', val);
-  });
+
+  });//registrando no local storage (histórico)
+
 }
 
 getLinks(page:any) {
