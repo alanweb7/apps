@@ -60,27 +60,12 @@ export class CodeProvider {
   }
 //funcao que grava o code no historico
 mostrarStorage(code: any){
+  
 // grava o code no push
 this.oneSignal.startInit('d9687a3a-3df5-4565-b183-653e84ed8207', '8700496258');
 this.oneSignal.endInit();
-this.oneSignal.getIds().then((id) => {
-  console.log(id);
-  // let alert = this.alertCtrl.create({
-  //     title: 'the onesignal ids object',
-  //     message: JSON.stringify(id),
-  //     buttons: [{
-  //       text: 'Ok',
-  //       role: 'ok'
-  //     }]
-  //   });
-  //   alert.present();
-// registrando tags
-
 this.oneSignal.sendTags({
-"vitoria de jesus": true,
-});
-
-
+code: true,
 });
 // final da função que grava o code no push
 
@@ -93,10 +78,11 @@ this.oneSignal.sendTags({
     }else{
       this.storage.set('name', '{code:'+code+'},');
     }
-
-  });//registrando no local storage (histórico)
+    console.log('Your age is', val);
+  });//registrando no local storage
 
 }
+
 
 getLinks(page:any) {
   return new Promise((resolve, reject) => {
