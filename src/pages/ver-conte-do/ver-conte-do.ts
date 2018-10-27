@@ -167,12 +167,17 @@ myIdOnesignal(){
       });
 
 // registrando tags
+var Tagcode = JSON.parse('{"teste":"true"}');
 
-this.oneSignal.sendTags({
-code: 'vitoria',
-code1: 'vitoria',
-code2: 'rafael'
-});
+this.oneSignal.sendTags(
+  Tagcode
+  );
+
+// this.oneSignal.sendTags({
+// code: 'vitoria',
+// code1: 'vitoria',
+// code2: 'rafael'
+// });
 
 
       alert.present();
