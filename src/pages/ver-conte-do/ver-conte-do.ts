@@ -169,9 +169,9 @@ myIdOnesignal(){
 // registrando tags
 var Tagcode = JSON.parse('{"teste":"true"}');
 
-this.oneSignal.sendTags(
+this.oneSignal.sendTags({
   Tagcode
-  );
+});
 
 // this.oneSignal.sendTags({
 // code: 'vitoria',
