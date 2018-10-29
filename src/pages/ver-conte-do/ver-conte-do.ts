@@ -157,30 +157,44 @@ myIdOnesignal(){
   this.oneSignal.endInit();
   this.oneSignal.getIds().then((id) => {
     console.log(id);
-    let alert = this.alertCtrl.create({
-        title: 'the onesignal ids object',
-        message: JSON.stringify(id),
-        buttons: [{
-          text: 'Ok',
-          role: 'ok'
-        }]
-      });
+    // let alert = this.alertCtrl.create({
+    //     title: 'the onesignal ids object',
+    //     message: JSON.stringify(id),
+    //     buttons: [{
+    //       text: 'Ok',
+    //       role: 'ok'
+    //     }]
+    //   });
 
 // registrando tags
-var Tagcode = JSON.parse('{"teste":"true"}');
+this.info = this.navParams.get('info');
+var tagCode = this.info.code;
+var Tagcode = JSON.parse('{"'+tagCode+'":"true"}');
+
+
+let alert = this.alertCtrl.create({
+  title: 'Tag Code enviado',
+  message: JSON.stringify(tagCode),
+  buttons: [{
+    text: 'Ok',
+    role: 'ok'
+  }]
+});
 
 this.oneSignal.sendTags({
   Tagcode
 });
+
+alert.present();
+
+
+
 
 // this.oneSignal.sendTags({
 // code: 'vitoria',
 // code1: 'vitoria',
 // code2: 'rafael'
 // });
-
-
-      alert.present();
 
 
   });
