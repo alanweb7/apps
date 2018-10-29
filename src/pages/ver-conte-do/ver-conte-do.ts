@@ -181,9 +181,7 @@ let alert = this.alertCtrl.create({
   }]
 });
 
-this.oneSignal.sendTags({
-  Tagcode
-});
+this.oneSignal.sendTags(Tagcode);
 
 alert.present();
 
