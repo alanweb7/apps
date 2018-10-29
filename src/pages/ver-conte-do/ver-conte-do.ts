@@ -169,12 +169,12 @@ myIdOnesignal(){
 // registrando tags
 this.info = this.navParams.get('info');
 var tagCode = this.info.code;
-var Tagcode = JSON.parse('{"'+tagCode+'":"true"}');
+var Tagcode = JSON.parse('{"tagCode":"true"}');
 
 
 let alert = this.alertCtrl.create({
   title: 'Tag Code enviado',
-  message: JSON.stringify(tagCode),
+  message: JSON.stringify(Tagcode),
   buttons: [{
     text: 'Ok',
     role: 'ok'
