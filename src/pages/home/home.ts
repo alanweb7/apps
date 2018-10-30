@@ -187,9 +187,10 @@ oneSignalApp(){
   //  alert('notification is received');
   });
   
-  this.oneSignal.handleNotificationOpened().subscribe(() => {
+  this.oneSignal.handleNotificationOpened().subscribe( notification => {
     // do something when a notification is opened
     // alert('notification is opened');
+    alert(JSON.stringify(notification));
   });
   
   this.oneSignal.endInit();
