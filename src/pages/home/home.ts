@@ -157,7 +157,7 @@ shareSheetShare() {
 
 shopcode() {
   console.log('clicou shopcode');
-  var url = 'https://kscode.com.br/ksc_2020/pacotes/';
+  var url = 'https://kscode.com.br/pacotes/';
   const options: InAppBrowserOptions = {
   zoom: 'no',
   toolbar: 'yes',

@@ -8,9 +8,9 @@ import { OneSignal } from '@ionic-native/onesignal';
 @Injectable()
 export class CodeProvider {
   public myGlobalVar: string;
-  private API_URL = 'https://kscode.com.br/ksc_2020/wp-json/code/search/?'
+  private API_URL = 'https://kscode.com.br/wp-json/code/search/?'
   // private API_URL = 'https://kcode.com.br/kcode_2019/wp-json/code/search/?'
-  private APP_URL = 'https://kscode.com.br/ksc_2020/wp-json/code/search/?code_number=pesquisa777'
+  private APP_URL = 'https://kscode.com.br/wp-json/code/search/?code_number=pesquisa777'
   // position: {latitude: -1.4194118, longitude: -48.4431067}
 
   constructor(
