@@ -169,7 +169,7 @@ myIdOnesignal(){
 // registrando tags
 this.info = this.navParams.get('info');
 var tagCode = this.info.code;
-var dataTag = '{'+tagCode+':true}';
+var dataTag = '{"'+tagCode+'":"true"}';
 // var Tagcode = JSON.parse('{"'+tagCode+'":"true"}');
 var Tagcode = JSON.parse(dataTag);
 
