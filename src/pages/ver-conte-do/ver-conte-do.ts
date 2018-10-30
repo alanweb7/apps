@@ -31,6 +31,7 @@ export class VerConteDoPage {
   page: number;
   imgSrc:any;
   info:any;
+  TagRegCode:any;
   showhidefavorite:any=1;
 
   @ViewChild(InfiniteScroll) infiniteScroll: InfiniteScroll;
@@ -56,7 +57,7 @@ export class VerConteDoPage {
             )
     {  
 
-      this.myIdOnesignal();
+      // this.myIdOnesignal();
     
     }
 
@@ -93,7 +94,11 @@ handleIFrameLoadEvent(): void {
         }
 
        // this.video = { url : 'https://player.vimeo.com/video/286207416'};
-
+       //registrando code acessado no push
+this.TagRegCode = user.code;
+if(this.TagRegCode !== ''){
+this.myIdOnesignal();
+}
 var $countVideos = user.album_vimeo.length;
 console.log('numero de videos na galeria: ', $countVideos);
 console.log('Vimeo galeria: ', user.album_vimeo);       
@@ -168,7 +173,11 @@ myIdOnesignal(){
 
 // registrando tags
 this.info = this.navParams.get('info');
-var tagCode = this.info.code;
+var tagCode = this.TagRegCode;
+
+    // var tagCode = this.info.code;
+    // tagCode = tagCode.toLowerCase();
+    
 var dataTag = '{"'+tagCode+'":"true"}';
 // var Tagcode = JSON.parse('{"'+tagCode+'":"true"}');
 var Tagcode = JSON.parse(dataTag);
@@ -186,9 +195,6 @@ let alert = this.alertCtrl.create({
 this.oneSignal.sendTags(Tagcode);
 
 alert.present();
-
-
-
 
 // this.oneSignal.sendTags({
 // code: 'vitoria',
