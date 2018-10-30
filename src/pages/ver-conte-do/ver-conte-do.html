@@ -116,12 +116,12 @@
     Redes Sociais
   </h4>
   <div id="cloud-button-bar2" class="button-bar" *ngFor="let user of users">
-<a href="https://facebook.com/{{user.facebookUser}}"  class="button button-positive" [hidden]="user.facebookUser === ''">
+<a href="https://facebook.com/{{user.facebookUser}}"  class="button button-positive" [hidden]="!user.facebookUser">
   <button id="verConteDo-button7" ion-button outline color="dark" class="btn_50 button-block">
-    <ion-icon name="logo-facebook" style="font-size: 24px;color:#000000"></ion-icon>
+    <ion-icon name="logo-facebook"></ion-icon>
   </button>
 </a>
-<a href="https://instagram.com/{{user.instagramUser}}"  class="button button-positive" [hidden]="user.instagramUser === ''">
+<a href="https://instagram.com/{{user.instagramUser}}"  class="button button-positive" [hidden]="!user.instagramUser">
   <button id="verConteDo-button8" ion-button outline color="dark"  class="btn_50 button-block">
     <ion-icon name="logo-instagram" style="font-size: 24px;color:#000000"></ion-icon>
   </button>
