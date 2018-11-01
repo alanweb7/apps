@@ -11,7 +11,9 @@ import { HomePage } from "./../home/home";
 export class MinhaContaPage {
   public url:string;
 
-  constructor(public navCtrl: NavController, private inAppBrowser: InAppBrowser) {
+  constructor(
+    public navCtrl: NavController, 
+    private inAppBrowser: InAppBrowser) {
   }
 
   ionViewDidLoad(){

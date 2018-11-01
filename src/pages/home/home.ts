@@ -238,6 +238,6 @@ redirectPush(notificationCode){
       telephone: this.global.myGlobalVar
     }
   });
-}
+}//redirect push
 
 }
