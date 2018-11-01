@@ -196,7 +196,7 @@ oneSignalApp(){
 
     alert(JSON.stringify(notificationCode));
 
-    this.redirectPush();
+    this.redirectPush(notificationCode);
 
   });
   
@@ -218,7 +218,7 @@ oneSignalApp(){
 }
 
 // redirect push enter
-redirectPush(){
+redirectPush(notificationCode){
   this.geo.getCurrentPosition().then(res => {
     this.endLat = res.coords.latitude;
     this.endLong = res.coords.longitude;
@@ -233,7 +233,7 @@ redirectPush(){
   console.log();
   this.navCtrl.push(VerConteDoPage, {
     info: {
-      code: 'KSCODE',
+      code: notificationCode,
       position:{"latitude": latitude, "longitude": longitude},
       telephone: this.global.myGlobalVar
     }
