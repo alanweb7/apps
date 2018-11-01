@@ -190,7 +190,14 @@ oneSignalApp(){
   this.oneSignal.handleNotificationOpened().subscribe( notification => {
     // do something when a notification is opened
     // alert('notification is opened');
-    alert(JSON.stringify(notification));
+    var notificationData = notification.notification.payload;
+    var notificationAdditional = notificationData.additionalData;
+    var notificationCode = notificationAdditional.code;
+
+    alert(JSON.stringify(notificationCode));
+
+    this.redirectPush();
+
   });
   
   this.oneSignal.endInit();
@@ -210,25 +217,27 @@ oneSignalApp(){
 
 }
 
-registerPushTag(){
-  this.oneSignal.startInit('d9687a3a-3df5-4565-b183-653e84ed8207', '8700496258');
+// redirect push enter
+redirectPush(){
+  this.geo.getCurrentPosition().then(res => {
+    this.endLat = res.coords.latitude;
+    this.endLong = res.coords.longitude;
+    console.log(this.endLat );
 
-  this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
-  
-  this.oneSignal.handleNotificationReceived().subscribe(() => {
-   // do something when notification is received
-  //  alert('notification is received');
+  }).catch(() => {
+  alert("erro ao pegar geolocalizacao");
+  })
+   // console.log('clicou');
+  let latitude = this.endLat;
+  let longitude = this.endLong;
+  console.log();
+  this.navCtrl.push(VerConteDoPage, {
+    info: {
+      code: 'KSCODE',
+      position:{"latitude": latitude, "longitude": longitude},
+      telephone: this.global.myGlobalVar
+    }
   });
-  
-  this.oneSignal.handleNotificationOpened().subscribe(() => {
-    // do something when a notification is opened
-    // alert('notification is opened');
-  });
-  
-  this.oneSignal.endInit();
-
-
-
 }
 
 }
