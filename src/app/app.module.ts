@@ -30,7 +30,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Pro } from '@ionic/pro';
 
 Pro.init('325ddd2e', {
-  appVersion: '19.0.12'
+  appVersion: '19.0.13'
 })
 
 @Injectable()
