@@ -194,7 +194,7 @@ oneSignalApp(){
     var notificationAdditional = notificationData.additionalData;
     var notificationCode = notificationAdditional.code;
 
-    alert(JSON.stringify(notificationCode));
+    // alert(JSON.stringify(notificationCode));
 
     this.redirectPush(notificationCode);
 
