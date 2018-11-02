@@ -195,7 +195,6 @@ oneSignalApp(){
     var notificationCode = notificationAdditional.code;
 
     // alert(JSON.stringify(notificationCode));
-
     this.redirectPush(notificationCode);
 
   });
