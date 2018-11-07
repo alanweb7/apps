@@ -8,10 +8,7 @@ import { HistoricoPage, } from '../pages/historico/historico';
 import { PesquisaPage, } from '../pages/pesquisa/pesquisa';
 import { HomePage } from '../pages/home/home';
 
-import { Deeplinks } from '@ionic-native/deeplinks';
-
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
-
 
 @Component({
   templateUrl: 'app.html'
@@ -23,7 +20,6 @@ export class MyApp {
   constructor(platform: Platform, 
     statusBar: StatusBar, 
     splashScreen: SplashScreen,
-    private deeplinks: Deeplinks,
     private inAppBrowser: InAppBrowser
   ) {
     platform.ready().then(() => {
@@ -54,9 +50,6 @@ export class MyApp {
     const browser = this.inAppBrowser.create(url, '_system', options);
     browser.insertCSS({ code: "body{color: blue;" });
   // mudou 2.4
-
-
-
 
     // if (!params) params = {};
     // this.navCtrl.setRoot(MinhaContaPage);

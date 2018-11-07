@@ -7,6 +7,8 @@ import { PesquisaPage } from '../pesquisa/pesquisa';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { OneSignal } from '@ionic-native/onesignal';
 
+import { Deeplinks } from '@ionic-native/deeplinks';
+
 import { Geolocation } from '@ionic-native/geolocation';
 import { SocialSharing } from '@ionic-native/social-sharing';
 
@@ -34,10 +36,13 @@ export class HomePage {
     private sim: Sim,
     private socialSharing: SocialSharing,
     private inAppBrowser: InAppBrowser,
-    private oneSignal: OneSignal
+    private oneSignal: OneSignal,
+    private deeplinks: Deeplinks
+    
   ) {
       // this.pushInfoPhone();  
       this.oneSignalApp();
+      this.openDeeplinks();
     }
     ionViewDidLoad(){
     var cascate = {
@@ -238,5 +243,34 @@ redirectPush(notificationCode){
     }
   });
 }//redirect push
+
+// redirect links
+openDeeplinks(){
+  this.deeplinks.route({
+    '/about-us': {'page':'AboutPage'},
+    // '/products/:productId': ProductPage,
+    '/card': {'conteudo':'VerConteDoPage'},
+  }).subscribe(match => {
+    alert('Successfully matched route'+ JSON.stringify(match));
+      var page = match.$route.page;    
+      var code = match.$args.code;    
+    if(page){
+
+    this.redirectPush(code);
+
+    }
+    // match.$route - the route we matched, which is the matched entry from the arguments to route()
+    // match.$args - the args passed in the link
+    // match.$link - the full link data
+
+    console.log('Successfully matched route', match);
+  }, nomatch => {
+    // nomatch.$link - the full link data
+    alert('No Match'+ JSON.stringify(nomatch));
+    console.error('Got a deeplink that didn\'t match', nomatch);
+  });
+
+
+}// redirect links
 
 }
