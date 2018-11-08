@@ -42,9 +42,9 @@ export class HomePage {
   ) {
       // this.pushInfoPhone();  
       this.oneSignalApp();
-      this.openDeeplinks();
     }
     ionViewDidLoad(){
+    this.openDeeplinks();
     var cascate = {
       func1: {
         1:this.pushGeoinfo(),
@@ -249,12 +249,12 @@ openDeeplinks(){
   this.deeplinks.route({
     '/about-us': {'page':'AboutPage'},
     // '/products/:productId': ProductPage,
-    '/card': {'conteudo':'VerConteDoPage'},
+    '/card': {'card':'VerConteDoPage'},
   }).subscribe(match => {
-    alert('Successfully matched route'+ JSON.stringify(match));
+    // alert('Successfully matched route'+ JSON.stringify(match));
       var page = match.$route.page;    
       var code = match.$args.code;    
-    if(page){
+    if(code){
 
     this.redirectPush(code);
 
@@ -266,7 +266,7 @@ openDeeplinks(){
     console.log('Successfully matched route', match);
   }, nomatch => {
     // nomatch.$link - the full link data
-    alert('No Match'+ JSON.stringify(nomatch));
+    // alert('No Match'+ JSON.stringify(nomatch));
     console.error('Got a deeplink that didn\'t match', nomatch);
   });
 
