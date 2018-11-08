@@ -208,8 +208,18 @@ openWebpage(link){
   closebuttoncolor:'#000000',
   // irHome: this.pushPageHome(),
   }
-  const browser = this.inAppBrowser.create(url, '_self', options);
+
+  this.navCtrl.push(VerConteDoPage, {
+    info: {
+      code: 'kscode',
+    }
+  });
+
+
+  const browser = this.inAppBrowser.create(url, '_blank', options);
   browser.insertCSS({ code: "body{color: blue;" });
+
+
 // mudou 2.4
 } 
 
