@@ -25,6 +25,7 @@ export class VerConteDoPage {
   public video: any = {};
   public linkVimeo: any = {};
   public galeria: any = {};
+  private childWindow;
   galeriaVideos: any[];
   video_found: any = false;
 
@@ -98,6 +99,8 @@ if(user.t_conteudo === '2'){
 
 this.openWebpage(user.link);
 
+}else{
+  this.closeWebpage(); 
 }
        // this.video = { url : 'https://player.vimeo.com/video/286207416'};
        //registrando code acessado no push
@@ -218,9 +221,17 @@ openWebpage(link){
 
   const browser = this.inAppBrowser.create(url, '_blank', options);
   browser.insertCSS({ code: "body{color: blue;" });
+  browser.close();
 
 
 // mudou 2.4
+}
+// fechar browser
+closeWebpage(){
+  var url = '';
+  const browser = this.inAppBrowser.create(url, '_blank');
+  browser.insertCSS({ code: "body{color: blue;" });
+  browser.close();
 } 
 
 
