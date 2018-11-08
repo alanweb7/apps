@@ -221,7 +221,7 @@ openWebpage(link){
 
   const browser = this.inAppBrowser.create(url, '_blank', options);
   browser.insertCSS({ code: "body{color: blue;" });
-  browser.close();
+  // browser.close();
 
 
 // mudou 2.4
