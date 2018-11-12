@@ -102,8 +102,7 @@
         "DEEPLINK_5_HOST": " "
       },
       "cordova-plugin-inappbrowser": {},
-      "cordova-plugin-x-socialsharing": {},
-      "onesignal-cordova-plugin": {}
+      "cordova-plugin-x-socialsharing": {}
     },
     "platforms": [
       "android",
