@@ -117,4 +117,4 @@
     <plugin name="onesignal-cordova-plugin" spec="~2.4.3" />
     <engine name="android" spec="~7.1.1" />
     <engine name="ios" spec="~4.5.5" />
-</widget>
+</widget> 
