@@ -13,7 +13,7 @@ import { HomePage } from "./../home/home";
 
 import { Storage } from '@ionic/storage';
 import { OneSignal } from '@ionic-native/onesignal';
-import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
+import { BrowserTab } from '@ionic-native/browser-tab';
 
 // @IonicPage()
 
@@ -56,7 +56,7 @@ export class VerConteDoPage {
     private storage: Storage,
     private domSanitizer: DomSanitizer,
     private oneSignal: OneSignal,
-    private inAppBrowser: InAppBrowser
+    private browserTab: BrowserTab
             )
     {  
 
@@ -100,7 +100,7 @@ if(user.t_conteudo === '2'){
 this.openWebpage(user.link);
 
 }else{
-  this.closeWebpage(); 
+  //this.closeWebpage(); 
 }
        // this.video = { url : 'https://player.vimeo.com/video/286207416'};
        //registrando code acessado no push
@@ -198,41 +198,20 @@ this.oneSignal.sendTags(Tagcode);
 
 }
 
-openWebpage(link){
-  var url = link;
-  const options: InAppBrowserOptions = {
-  zoom: 'no',
-  toolbar: 'yes',
-  hideurlbar: 'yes',
-  hidenavigationbuttons: 'yes',
-  location: 'no',
-  hardwareback: 'yes',
-  closebuttoncaption:'Home',
-  closebuttoncolor:'#000000',
-  // irHome: this.pushPageHome(),
+  openWebpage(link){
+    var url = link;
+    this.browserTab.isAvailable()
+      .then(isAvailable => {
+        if (isAvailable) {
+          this.browserTab.openUrl(url);
+        } else {
+          // open URL with InAppBrowser instead or SafariViewController
+        }
+      });
+
+  
+  // mudou 2.4
   }
 
-  this.navCtrl.push(VerConteDoPage, {
-    info: {
-      code: 'kscode',
-    }
-  });
 
-
-  const browser = this.inAppBrowser.create(url, '_blank', options);
-  browser.insertCSS({ code: "body{color: blue;" });
-  // browser.close();
-
-
-// mudou 2.4
 }
-// fechar browser
-closeWebpage(){
-  var url = '';
-  const browser = this.inAppBrowser.create(url, '_blank');
-  browser.insertCSS({ code: "body{color: blue;" });
-  browser.close();
-} 
-
-
-  }

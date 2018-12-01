@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController} from 'ionic-angular';
-import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
+import { BrowserTab } from '@ionic-native/browser-tab';
 import { HomePage } from "./../home/home";
 
 // @IonicPage()
@@ -13,7 +13,7 @@ export class MinhaContaPage {
 
   constructor(
     public navCtrl: NavController, 
-    private inAppBrowser: InAppBrowser) {
+    private browserTab: BrowserTab) {
   }
 
   ionViewDidLoad(){
@@ -24,7 +24,7 @@ export class MinhaContaPage {
 
   openWebpage(){
     var url = 'https://kscode.com.br/meu-code';
-    const options: InAppBrowserOptions = {
+    /* const options: InAppBrowserOptions = {
     zoom: 'no',
     toolbar: 'yes',
     hideurlbar: 'yes',
@@ -34,9 +34,15 @@ export class MinhaContaPage {
     closebuttoncaption:'Home',
     closebuttoncolor:'#000000',
     // irHome: this.pushPageHome(),
-    }
-    const browser = this.inAppBrowser.create(url, '_system', options);
-    browser.insertCSS({ code: "body{color: blue;" });
+    } */
+    this.browserTab.isAvailable()
+    .then(isAvailable => {
+      if (isAvailable) {
+        this.browserTab.openUrl(url);
+      } else {
+        // open URL with InAppBrowser instead or SafariViewController
+      }
+    });
   // mudou 2.4
   } 
   

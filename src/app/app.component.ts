@@ -8,7 +8,7 @@ import { HistoricoPage, } from '../pages/historico/historico';
 import { PesquisaPage, } from '../pages/pesquisa/pesquisa';
 import { HomePage } from '../pages/home/home';
 
-import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
+import { BrowserTab } from '@ionic-native/browser-tab';
 
 @Component({
   templateUrl: 'app.html'
@@ -20,7 +20,7 @@ export class MyApp {
   constructor(platform: Platform, 
     statusBar: StatusBar, 
     splashScreen: SplashScreen,
-    private inAppBrowser: InAppBrowser
+    private browserTab: BrowserTab,
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -36,7 +36,7 @@ export class MyApp {
   goToMinhaConta(params){
 
     var url = 'https://kscode.com.br/meu-code';
-    const options: InAppBrowserOptions = {
+    /* const options: InAppBrowserOptions = {
     zoom: 'no',
     toolbar: 'yes',
     hideurlbar: 'yes',
@@ -46,9 +46,15 @@ export class MyApp {
     closebuttoncaption:'Home',
     closebuttoncolor:'#000000',
     // irHome: this.pushPageHome(),
-    }
-    const browser = this.inAppBrowser.create(url, '_system', options);
-    browser.insertCSS({ code: "body{color: blue;" });
+    } */
+    this.browserTab.isAvailable()
+    .then(isAvailable => {
+      if (isAvailable) {
+        this.browserTab.openUrl(url);
+      } else {
+        // open URL with InAppBrowser instead or SafariViewController
+      }
+    });
   // mudou 2.4
 
     // if (!params) params = {};

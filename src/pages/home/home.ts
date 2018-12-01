@@ -4,7 +4,7 @@ import { CodeProvider } from '../../providers/code/code';
 import { VerConteDoPage } from '../ver-conte-do/ver-conte-do';
 import { PesquisaPage } from '../pesquisa/pesquisa';
 
-import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
+import { BrowserTab } from '@ionic-native/browser-tab';
 import { OneSignal } from '@ionic-native/onesignal';
 
 import { Deeplinks } from '@ionic-native/deeplinks';
@@ -35,7 +35,7 @@ export class HomePage {
     private platform: Platform,
     private sim: Sim,
     private socialSharing: SocialSharing,
-    private inAppBrowser: InAppBrowser,
+    private browserTab: BrowserTab,
     private oneSignal: OneSignal,
     private deeplinks: Deeplinks
     
@@ -163,7 +163,7 @@ shareSheetShare() {
 shopcode() {
   console.log('clicou shopcode');
   var url = 'https://kscode.com.br/pacotes/';
-  const options: InAppBrowserOptions = {
+  /* const options: InAppBrowserOptions = {
   zoom: 'no',
   toolbar: 'yes',
   hideurlbar: 'yes',
@@ -173,10 +173,16 @@ shopcode() {
   closebuttoncaption:'Home',
   closebuttoncolor:'#000000',
   // irHome: this.pushPageHome(),
-  }
+  } */
   
-  const browser = this.inAppBrowser.create(url, '_system', options);
-  browser.insertCSS({ code: "body{color: blue;" });
+  this.browserTab.isAvailable()
+  .then(isAvailable => {
+    if (isAvailable) {
+      this.browserTab.openUrl(url);
+    } else {
+      // open URL with InAppBrowser instead or SafariViewController
+    }
+  });
 // mudou 2.4 
   
 }

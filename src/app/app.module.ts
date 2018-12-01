@@ -1,7 +1,7 @@
 import { NgModule, ErrorHandler, Injectable, Injector } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { InAppBrowser } from '@ionic-native/in-app-browser';
+
 import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -26,12 +26,13 @@ import { HttpModule } from '@angular/http';
 import { Sim } from '../../node_modules/@ionic-native/sim';
 
 import { IonicStorageModule } from '@ionic/storage';
+import { BrowserTab } from '@ionic-native/browser-tab';
 
-import { Pro } from '@ionic/pro';
+/* import { Pro } from '@ionic/pro';
 
 Pro.init('325ddd2e', {
   appVersion: '19.0.15'
-})
+}) */
 
 @Injectable()
 export class MyErrorHandler implements ErrorHandler {
@@ -47,7 +48,7 @@ export class MyErrorHandler implements ErrorHandler {
   }
 
   handleError(err: any): void {
-    Pro.monitoring.handleNewError(err);
+   // Pro.monitoring.handleNewError(err);
     // Remove this if you want to disable Ionic's auto exception handling
     // in development mode.
     this.ionicErrorHandler && this.ionicErrorHandler.handleError(err);
@@ -87,7 +88,7 @@ export class MyErrorHandler implements ErrorHandler {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CodeProvider,
     Geolocation,
-    InAppBrowser,
+    BrowserTab,
     SocialSharing,
     // BackgroundMode,
     Sim,
