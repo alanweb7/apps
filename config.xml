@@ -108,7 +108,6 @@
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.4.1" />
     <plugin name="cordova-plugin-browsertab" spec="^0.2.0" />
     <allow-navigation href="http://10.0.0.5:8100" sessionid="bb7f5d7f" />
-    <plugin name="onesignal-cordova-plugin" spec="2.4.5" />
     <engine name="ios" spec="4.5.5" />
     <engine name="android" spec="~7.1.4" />
 </widget>
