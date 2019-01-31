@@ -1,73 +1,164 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, Nav } from 'ionic-angular';
+import { Events,Nav, Platform, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
-import { MinhaContaPage } from '../pages/minha-conta/minha-conta';
-import { HistoricoPage, } from '../pages/historico/historico';
-import { PesquisaPage, } from '../pages/pesquisa/pesquisa';
-import { HomePage } from '../pages/home/home';
-
-import { BrowserTab } from '@ionic-native/browser-tab';
+import { UsuarioService } from '../providers/movie/usuario.service';
+import {Deeplinks} from "@ionic-native/deeplinks";
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  @ViewChild(Nav) navCtrl: Nav;
-    rootPage:any = HomePage;
+  @ViewChild(Nav) nav: Nav;
 
-  constructor(platform: Platform, 
-    statusBar: StatusBar, 
-    splashScreen: SplashScreen,
-    private browserTab: BrowserTab,
-  ) {
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
-    });
-  }
-  goToHome(params){
-    if (!params) params = {};
-    this.navCtrl.setRoot(HomePage);
-  }
-  goToMinhaConta(params){
+  rootPage: any = 'HomePage';
+    mostra     : Boolean;
+    id_serv     :Number;
+    name        :String;
+    sobrenome   :String;
+    email       :String;
+    photo       :String;
+    tp_pessoa   :String;
+    cpf         :String;
+    cnpj        :String;
+    cep         :String;
+    endereco    :String;
+    numero      :String;
+    complemento :String;
+    bairro      :String;
+    cidade      :String;
+    estado      :String;
+    telefone    :String;
+    celular     :String;
+    usuario     :String;
+    logado      :String;
+    token       :String;
+  
+  pages      : Array<{ color:string,icon: string, title: string, component: any}>;
 
-    var url = 'https://kscode.com.br/meu-code';
-    /* const options: InAppBrowserOptions = {
-    zoom: 'no',
-    toolbar: 'yes',
-    hideurlbar: 'yes',
-    hidenavigationbuttons: 'yes',
-    location: 'no',
-    hardwareback: 'yes',
-    closebuttoncaption:'Home',
-    closebuttoncolor:'#000000',
-    // irHome: this.pushPageHome(),
-    } */
-    this.browserTab.isAvailable()
-    .then(isAvailable => {
-      if (isAvailable) {
-        this.browserTab.openUrl(url);
-      } else {
-        // open URL with InAppBrowser instead or SafariViewController
+
+  constructor(private usuarioService : UsuarioService,
+              public platform        : Platform,
+              private event          : Events,
+              public statusBar       : StatusBar,
+              public splashScreen    : SplashScreen,
+              public modalCtrl     : ModalController,
+              deeplinks              : Deeplinks,
+              ) {
+    this.initializeApp();
+    deeplinks.routeWithNavController(this.nav, {
+      '/card': {'card':'DetalheCodePage',},
+      '/about-us': {'card':'DetalheCodePage'},
+    }).subscribe((match) => {
+      
+      var code = match.$link.queryString.substring(5,50); 
+      
+      if(code){
+          this.redirectPush(code);
+     
+  
       }
+      console.log('Successfully routed',match.$link.queryString.substring(4,50));
+      console.log('Successfully routed',match.$link.queryString);
+    }, (nomatch) => {
+      console.log('Unmatched Route', nomatch);
     });
-  // mudou 2.4
+    
 
-    // if (!params) params = {};
-    // this.navCtrl.setRoot(MinhaContaPage);
+    
+    //capturar do evento da home
+    this.event.subscribe("dados", (data:any) => { 
+       console.log("dados eventos",data.logado);
+       console.log("dados eventos",data.token);
+         if(data.logado == "1"){
+              this.name    = data.name;
+              this.token   = data.token;
+              this.email   = data.email;
+              this.usuario = data.usuario;
+              this.id_serv = data.id_serv;
+              this.sobrenome = data.sobrenome;
+              this.photo     = data.photo;
+              this.mostra  = true;
+              console.log("dados",this.name,this.photo);
+         
+         }else{
+               this.mostra = false;
+         }
+       
+    });
+    // aqui eu seto o meu menu
+    this.pages = [
+      { color:'primary',  icon: 'home',               title: 'Home',                component: 'HomePage'},
+      { color:'primary',  icon: 'contact',            title: 'Meus Codes',        component: 'MeusCodesPage' },
+      { color:'primary',  icon: 'star',               title: 'Meus Favoritos',      component: 'HistoricoPage'},
+      { color:'primary',  icon: 'search',             title: 'Pesquisa',            component: 'PesquisaPage' }
+     
+    ];
 
   }
-   goToHistorico(params){
-    if (!params) params = {};
-    this.navCtrl.setRoot(HistoricoPage);
-  }
-  goToPasquisa(params){
-    if (!params) params = {};
-    this.navCtrl.setRoot(PesquisaPage);
-  }
 
+  initializeApp() {
+    this.platform.ready().then(() => {
+      this.statusBar.styleDefault();
+      //Deeplinks if from Ionic Native
+      
+      this.splashScreen.hide();
+      
+    });
+    this.sobrenome= "";
+    this.photo = "";
+    this.email = "";
+  }
+  
+// redirect push enter
+redirectPush(notificationCode){
+  
+  this.nav.push('DetalheCodePage', {liberado :false,
+    info: {
+      code: notificationCode,
+      position:{"latitude": "", "longitude": ""},
+      telephone:""
+    }
+  
+  });
+ }
+  openPage(page) {
+    if(page.title == 'Meus Codes'){
+          if(this.token == undefined){
+            this.nav.push('LoginPage');
+          }else{
+            this.nav.push(page.component,{token:this.token});
+          }
+    }else if(page.title == 'Home'){
+      this.nav.setRoot(page.component,{token:this.token});
+    }
+    else{
+           this.nav.push(page.component,{token:this.token});
+    }
+  
+  }
+ 
+  minhaConta(){
+    console.log("token",this.token);
+    if(this.token == undefined){
+      this.nav.push('LoginPage');
+    }else{
+        let myModal =this.modalCtrl.create('MinhaContaPage',{token:this.token});
+        myModal.present();
+    }
+    
+  }
+  login(){
+    this.nav.setRoot('LoginPage');
+  }
+   //sair eu atualizo os dados
+   logout(){
+    this.usuarioService.update(this.name,this.sobrenome,this.email,"","","","0",this.token,this.id_serv)
+    .then((data: any) => {
+            if(data){
+              console.log("uusuario atualizado");
+            }
+    });
+    this.nav.push('LoginPage');
+ }
 }

@@ -1,60 +1,95 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>
-      Home
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-<ion-content padding id="page1" style="background-color:#000000;">
-  <div class="spacer" style="width:300px;height:29px;" id="home-spacer1"></div>
-  <img src="assets/img/0YCNfH79RwanY6W3GTye_Logo_white.png" style="display:block;width:40%;height:auto;margin-left:auto;margin-right:auto;" />
-  <div id="home-markdown1" style="text-align:center;" class="show-list-numbers-and-dots">
-    <p style="color:#FFFFFF;font-size:12px;">
-      Tudo se Conecta Aqui!
-    </p>
-  </div>
-  <div class="spacer" style="width:300px;height:24px;" id="home-spacer2"></div>
-  <form id="home-form1">
-    <ion-item id="home-input1" ng-model="movie.name" class="search_code">
-      <ion-label></ion-label>
-      <ion-input type="text" placeholder="CODE"  [(ngModel)]="codeNumber" name="code"></ion-input>
-    </ion-item>
-    <div class="spacer" style="width:300px;height:29px;" id="home-spacer1"></div>
-  <button id="home-button1" ion-button color="positive" block icon-left (click)="pushPage()" style="font-weight:600;">
-    <ion-icon name="navigate"></ion-icon> 
-    ACESSAR
-  </button>
-  </form> 
-  <div class="barPesquisa">
-  <button id="home-button17" ion-button color="positive" block icon-left (click)="pushPagePesquisa()" style="font-weight:600;" class="btnPesquisa">
-    <ion-icon name="search"></ion-icon> 
-    Pesquisa
-  </button>
-  <button id="home-button18" ion-button color="positive" block icon-left (click)="pushPageCode()" style="font-weight:600;" class="btnPesquisa" #kscode>
-    <ion-icon name="navigate"></ion-icon> 
-    KSCODE
-  </button>       
-  </div>
-<div class="btns_shop">
-
-<ion-item id="bar-tools" class="bar-tools" style="background-color:rgb(0, 0, 0); text-align: center">
-
-<div class="social-share" (click)="shareSheetShare()">
-      <ion-icon name="share" style="color:#fff;font-size: 23px"></ion-icon><br/>
-</div>
-
-</ion-item>
-<div class="spacer" style="width:100%;height:100px;" id="home-spacer14"></div>
-  <ion-item id="bar-tools2" class="bar-tools2" style="background-color:rgb(0, 0, 0); text-align: center">  
-  <div class="adquire-code" (click)="shopcode()">
-          <span class="title-share" style="color:#fff;font-size: 15px">ADQUIRA SEU CODE</span>
-  </div>
-
-</ion-item>
-
-</div>
-
-</ion-content>
+ 
+        <ion-navbar color="primary">
+            <button ion-button menuToggle>
+                <ion-icon name="menu"></ion-icon>
+            </button>
+           
+            <ion-title>
+                <ion-icon name="icone-logo"></ion-icon>
+            </ion-title>
+            
+        </ion-navbar>
+      
+      </ion-header>
+      
+      
+      <ion-content class="fundo">
+         <div >
+            <ion-card class="fundo">
+                <img src="assets/img/0YCNfH79RwanY6W3GTye_Logo_white.png"/>
+                <ion-card-content>
+                  <ion-card-title>
+                      Tudo se Conecta Aqui!
+                    </ion-card-title>
+                 
+                </ion-card-content>
+              </ion-card>
+              <form id="home-form1">
+                  <ion-card-content>
+                      <ion-grid>
+                          <ion-row>
+                              <ion-col col-12>
+                                  <ion-item id="home-input1" ng-model="movie.name" class="search_code">
+                                      <ion-label></ion-label>
+                                      <ion-input type="text" placeholder="CODE"  [(ngModel)]="codeNumber" name="code"></ion-input>
+                                  </ion-item>
+                              </ion-col>
+                              <ion-col col-12 class="info-servico">
+                                  <button id="home-button1" ion-button color="positive" block icon-left (click)="pushPage()" >
+                                      <ion-icon name="navigate"></ion-icon> 
+                                      ACESSAR
+                                    </button>
+                              </ion-col>
+                          </ion-row>
+                      </ion-grid>
+                  </ion-card-content>
+              </form>
+              
+         </div>
+      </ion-content>
+      <!-- CONTENT -->
+<!-- FOOTER -->
+<ion-footer *ngIf="footerIsHidden">
+    <ion-toolbar >
+        <ion-grid>
+            <ion-row>
+                <ion-col col-3>
+                   
+                      <div class="adquire-code" (click)="pushPagePesquisa()">
+                            <span class="title-share">PESQUISA</span>
+                      </div>
+                </ion-col>
+                <ion-col col-1>
+                        |
+                  
+                </ion-col>
+                <ion-col col-4>
+                        <div class="adquire-code" (click)="shopcode()">
+                                <span class="title-share">ADQUIRA SEU CODE</span>
+                        </div>
+                  
+                </ion-col>
+                <ion-col col-1>
+                        |
+                  
+                </ion-col>
+                <ion-col col-3>
+                    <div class="adquire-code" (click)="pushPageCode()">
+                        <span class="title-share">KSCODE</span>
+                    </div>
+                </ion-col>
+            </ion-row>
+           <!--  <ion-row>
+                <ion-col col-12>
+                    <div class="social-share" (click)="shareSheetShare()">
+                        <ion-icon name="share" style="color:#fff;font-size: 23px"></ion-icon><br/>
+                  </div>
+                </ion-col>
+            </ion-row>
+           -->
+        </ion-grid>
+    </ion-toolbar>
+</ion-footer>
+<!-- FOOTER -->
+      

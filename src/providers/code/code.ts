@@ -1,104 +1,185 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http,Response , Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/switchMap';
 import { Storage } from '@ionic/storage';
-import { OneSignal } from '@ionic-native/onesignal'; 
 
 @Injectable()
 export class CodeProvider {
   public myGlobalVar: string;
-  private API_URL = 'https://kscode.com.br/wp-json/code/search/?'
+  private API_URL = 'https://kscode.com.br/ksc_2020/wp-json/code/search/'
+  private API_IMG_URL = 'https://kscode.com.br/ksc_2019/wp-content/uploads/formidable/'
   // private API_URL = 'https://kcode.com.br/kcode_2019/wp-json/code/search/?'
   private APP_URL = 'https://kscode.com.br/wp-json/code/search/?code_number=pesquisa777'
-  // position: {latitude: -1.4194118, longitude: -48.4431067}
-
+  private APP_URL_CODE ='https://kscode.com.br/ksc_2020/wp-json/admin/v1/users/codes'
+  
+ 
   constructor(
-    public http: Http,
-    private storage: Storage,
-    private oneSignal: OneSignal,
+    public http      : Http,
+    private storage  : Storage,
+      
   ) { }
 
-  getAll(page: any) {
-    // console.log('Provider');
+getAll(page: any) : Observable<any>{
     let code = page.code;
     let phoneNumber = page.telephone;
     let latitude = page.position.latitude;
     let longitude = page.position.longitude;
-    // console.log(latitude +', '+ longitude);
-    //comentario
-
-
-  // Or to get a key/value pair
-  this.storage.get('historico').then((val) => {
-
-  if(val !== null){
-    var obj7     = JSON.parse(val);
-    obj7['historico'].push({code:code});
-    var atualizado = JSON.stringify(obj7);
-    this.storage.set('historico', atualizado);
-    console.log('Atualizado: ', obj7);    
-
-  }else{
-    // "{"historico":[{"teamId":"1","status":"pending"},{"teamId":"2","status":"member"},{"teamId":"3","status":"member"},{"teamId":"4","status":"pending"}]}" 
-    this.storage.set('historico', '{"historico":[{"code":"'+code+'"}]}');
-  }
-  console.log('Historico: ', val);
-});
-
-    return new Promise((resolve, reject) => {
-      
-      let url = this.API_URL + 'code_number='+ code +'&phone='+ phoneNumber +'&latitude='+latitude+'&longitude='+ longitude;
-      // alert(url);
-      this.http.get(url)
-        .subscribe((result: any) => {
-          resolve(result.json());
-        },
-        (error) => {
-          reject(error.json());
-        });
-    });
-  }
-//funcao que grava o code no historico
-mostrarStorage(code: any){
-  
-// grava o code no push
-this.oneSignal.startInit('d9687a3a-3df5-4565-b183-653e84ed8207', '8700496258');
-this.oneSignal.endInit();
-this.oneSignal.sendTags({
-code: true,
-});
-// final da função que grava o code no push
-
-
-  // Or to get a key/value pair
-  this.storage.get('name').then((val) => {
-      var content = val;    
-    if(val !== null){
-      this.storage.set('name', '{code:'+code+'},'+ content);
-    }else{
-      this.storage.set('name', '{code:'+code+'},');
-    }
-    console.log('Your age is', val);
-  });//registrando no local storage
-
+   
+      let url = this.API_URL + '?code_number='+ code +'&phone='+ phoneNumber +'&latitude='+latitude+'&longitude='+ longitude;
+     
+      return this.http.get(url).map((resp:Response)=> resp.json());
+}
+code_remove(token:String,id_code:Number): Observable<any>{
+  let url = this.APP_URL_CODE+'?token='+token+'&bloco=1&id='+id_code;
+  return this.http.delete(url).map((resp:Response)=> resp.json());
+}
+code_create(token:String,name_code:String,link:String,t_conteudo:String): Observable<any>{
+  var data = {
+    code: name_code,
+    link : link,
+    t_conteudo : t_conteudo,
+    token:token
+  };
+  let url = this.APP_URL_CODE;
+  return this.http.post(url,data).map((resp:Response)=> resp.json());
+}
+get_API_IMG_URL(): String{
+  return this.API_IMG_URL;
 }
 
 
-getLinks(page:any) {
-  return new Promise((resolve, reject) => {
+ //edição de code 
+
+  getAllCode(token:String): Observable<any>{
+   let url = this.APP_URL_CODE+'?token='+token;
+   return this.http.get(url).map((resp:Response)=> resp.json());
+  }
+  getShowCode(code:String): Observable<any>{
+    
+    let url = this.API_URL+"?code="+code;
+    return this.http.get(url).map((resp:Response)=> resp.json());
+   }
+  getLinks(page:any): Observable<any>{
     let url = this.APP_URL;
-    // alert(url);
-    this.http.get(url)
-      .subscribe((result: any) => {
-        resolve(result.json());
-      },
-      (error) => {
-        reject(error.json());
-      });
-  });
+    return this.http.get(url).map((resp:Response)=> resp.json());
+  }
+  getCodePassword(password:String,id:Number){
+    var data ={
+      password : password,
+      id : id,
+      bloco :1,
+    }
+   let url = this.APP_URL_CODE;
+   return this.http.post(url,data).map((resp:Response)=> resp.json());
+  }
+  code_Edit(token:String,id_code:Number,name_code:String,titulo?:String,descricao?:String,link?:String,isLink?:String,password?:String,isprivate?:Boolean): Observable<any>{
+    var data = {
+      id: id_code,
+      bloco :1,
+      token:token,
+      code: name_code,
+      titulo:titulo,
+      descricao:descricao,
+      link:link,
+      t_conteudo:isLink,
+      password   :password,
+      isprivate  :isprivate
+     
+    };
+    let url = this.APP_URL_CODE;
+    return this.http.post(url,data).map((resp:Response)=> resp.json());
+  }
+  contato_Edit(id_code:Number,token:String,pais?:String,tel_whatsapp?:String,tel_contato?:String,email?:String,website?:String,facebookUser?:String,instagramUser?:String,linkedin?:String): Observable<any>{
+   console.log(id_code,token,pais,tel_whatsapp,tel_contato,email);
+    var data = {
+      id: id_code,
+      bloco :1,
+      token:token     ,   
+      pais  :pais,
+      tel_whatsapp :tel_whatsapp,
+      tel_contato :tel_contato,
+      email :email,
+      website:website,
+      facebookUser:facebookUser,
+      instagramUser :instagramUser,
+      linkedin:linkedin,
+    };
+    let url = this.APP_URL_CODE;
+    return this.http.post(url,data).map((resp:Response)=> resp.json());
+  }
+  ///mídias 
+  imagen_create(id_code:Number,token:String,files:any[]): Observable<any>{
+    var data ={
+       id : id_code,
+       bloco :3,
+       token :token,
+       files:JSON.stringify(files)
+    }
+    let url = this.APP_URL_CODE;
+    return this.http.post(url,data).map((resp:Response)=> resp.json());
+  }
+  imagen_delete(token:String,id_code:Number): Observable<any>{
+    let url = this.APP_URL_CODE+'?token='+token+'&bloco=3&id='+id_code;
+    return this.http.delete(url).map((resp:Response)=> resp.json());
+  } 
+
+  doc_create(id_code:Number,token:String,files:any[]): Observable<any>{
+    var data ={
+       id : id_code,
+       bloco :4,
+       token :token,
+       files:JSON.stringify(files)
+    }
+    let url = this.APP_URL_CODE;
+    return this.http.post(url,data).map((resp:Response)=> resp.json());
+  }
+  doc_delete(token:String,id_code:Number): Observable<any>{
+    let url = this.APP_URL_CODE+'?token='+token+'&bloco=4&id='+id_code;
+    return this.http.delete(url).map((resp:Response)=> resp.json());
+  } 
+
+  video_create(id_code:Number,token:String,files:any[]): Observable<any>{
+    var data ={
+       id : id_code,
+       bloco :5,
+       token :token,
+       files:JSON.stringify(files)
+    }
+    let url = this.APP_URL_CODE;
+    return this.http.post(url,data).map((resp:Response)=> resp.json());
+  }
+  video_link_create(id_code:Number,token:String,files:String): Observable<any>{
+    var data ={
+       id : id_code,
+       bloco :6,
+       token :token,
+       files:files
+    }
+    let url = this.APP_URL_CODE;
+    return this.http.post(url,data).map((resp:Response)=> resp.json());
+  }
+   video_delete(token:String,id_code:Number): Observable<any>{
+    let url = this.APP_URL_CODE+'?token='+token+'&bloco=5&id='+id_code;
+    return this.http.delete(url).map((resp:Response)=> resp.json());
+  } 
+  
+  create_push(codeNumber:String,titulo:String,mensagem:String,token:String): Observable<any>{
+    console.log(codeNumber,titulo,mensagem,token);
+        var data ={
+          codeNumber : codeNumber,
+          titulo     : titulo,
+          mensagem   : mensagem,
+          token      : token,
+          password   : "@spot2020"
+         
+        }
+        console.log(data);
+      let url = 'https://kscode.com.br/ksc_2020/wp-json/admin/v1/dashboard/';
+      return this.http.post(url,data).map((resp:Response)=> resp.json());
+  }
+  
 }
-
-}
-
-

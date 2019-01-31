@@ -1,99 +1,77 @@
-import { NgModule, ErrorHandler, Injectable, Injector } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-
-import { SocialSharing } from '@ionic-native/social-sharing';
-
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { HistoricoPage } from '../pages/historico/historico';
-import { PesquisaPage } from '../pages/pesquisa/pesquisa';
-import { MinhaContaPage } from '../pages/minha-conta/minha-conta';
-import { VerConteDoPage } from '../pages/ver-conte-do/ver-conte-do';
-import { LinkExternoPage } from '../pages/link-externo/link-externo';
-
-import { Geolocation } from '@ionic-native/geolocation';
-
-import { StatusBar } from '@ionic-native/status-bar';
+import { ErrorHandler, NgModule,CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+import { HttpModule, } from '@angular/http';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { CodeProvider } from '../providers/code/code';
-// import { BackgroundMode } from '@ionic-native/background-mode';
-import { Deeplinks } from '@ionic-native/deeplinks';
-import { OneSignal } from '@ionic-native/onesignal'; 
-
-import { HttpModule } from '@angular/http'; 
-import { Sim } from '../../node_modules/@ionic-native/sim';
-
+import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
+import { MyApp } from './app.component';
+//import native
 import { IonicStorageModule } from '@ionic/storage';
+import { SQLite } from '@ionic-native/sqlite';
+import { Network } from '@ionic-native/network';
+import { Geolocation } from '@ionic-native/geolocation';
+import { Deeplinks } from '@ionic-native/deeplinks';
+import { SocialSharing } from '@ionic-native/social-sharing';
 import { BrowserTab } from '@ionic-native/browser-tab';
-
-/* import { Pro } from '@ionic/pro';
-
-Pro.init('325ddd2e', {
-  appVersion: '19.0.15'
-}) */
-
-@Injectable()
-export class MyErrorHandler implements ErrorHandler {
-  ionicErrorHandler: IonicErrorHandler;
-
-  constructor(injector: Injector) {
-    try {
-      this.ionicErrorHandler = injector.get(IonicErrorHandler);
-    } catch(e) {
-      // Unable to get the IonicErrorHandler provider, ensure
-      // IonicErrorHandler has been added to the providers list below
-    }
-  }
-
-  handleError(err: any): void {
-   // Pro.monitoring.handleNewError(err);
-    // Remove this if you want to disable Ionic's auto exception handling
-    // in development mode.
-    this.ionicErrorHandler && this.ionicErrorHandler.handleError(err);
-  }
-}
-
+import { Base64 } from '@ionic-native/base64';
+//import provider
+import { SqliteHelperService } from '../providers/sqlite-helper/sqlite-helper.service';
+import { CodeProvider } from '../providers/code/code';
+import { NetworkProvider } from '../providers/network/network';
+import { UsuarioService } from '../providers/movie/usuario.service';
+import { UtilService } from '../providers/util/util.service';
+import { DetalheCodePageModule } from '../pages/detalhe-code/detalhe-code.module';
+import { Autosize} from '../directives/autosize/autosize';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    HistoricoPage,
-    MinhaContaPage,
-    PesquisaPage,
-    VerConteDoPage,
-    LinkExternoPage
+    Autosize
+   
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
     HttpModule,
-    IonicStorageModule.forRoot()
+    DetalheCodePageModule,
+    IonicModule.forRoot(MyApp,
+    /* {
+     // locationStrategy: 'path',
+    },
+    {
+      // DeepLinker
+      links: [
+        {component: 'DetalheCodePage', name: 'DetalheCode', segment: 'DetalheCode/:info'},
+      ]
+        
+    } */)   ,
+     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    HistoricoPage,
-    PesquisaPage,        
-    MinhaContaPage,
-    VerConteDoPage,
-    LinkExternoPage
+  
   ],
   providers: [
-    StatusBar,
-    SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    SQLite,
+    SqliteHelperService,
     CodeProvider,
     Geolocation,
-    BrowserTab,
-    SocialSharing,
-    // BackgroundMode,
-    Sim,
     Deeplinks,
-    OneSignal 
+    Base64,
+    SocialSharing,
+    BrowserTab,
+    Network,
+    NetworkProvider,
+    StatusBar,
+    SplashScreen,
+    UsuarioService,
+    UtilService,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA,
+    NO_ERRORS_SCHEMA
   ]
 })
 export class AppModule {}

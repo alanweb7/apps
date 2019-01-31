@@ -1,59 +1,61 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { IonicPage,Navbar, NavController, NavParams, Loading, LoadingController, ToastController } from 'ionic-angular';
+//import provider
+import { ViewChild } from '@angular/core';
 import { CodeProvider } from './../../providers/code/code';
-
-/**
- * Generated class for the PesquisaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-@IonicPage()
+import { UtilService } from '../../providers/util/util.service';
+@IonicPage({
+  priority : 'off',
+  segment  : 'Pesquisa',
+  defaultHistory:['HomePage']
+})
 @Component({
   selector: 'page-pesquisa',
   templateUrl: 'pesquisa.html',
 })
 export class PesquisaPage {
-public users: any[];
-page: number;
-public links: any = [];
+public users : any[];
+page         : number;
+public links : any = [];
+@ViewChild(Navbar) navBar: Navbar;
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams,
+    public navCtrl      : NavController, 
+    public navParams    : NavParams,
     private codeProvider: CodeProvider,
+    public loadingCtrl  : LoadingController,
+    public util         : UtilService,
+    public toast          : ToastController,
   ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PesquisaPage');
+    this.util.showLoading("Aguarde..");
+    this.navBar.backButtonClick = (e:UIEvent)=>{
+      this.navCtrl.setRoot('HomePage');
+     
+     }  
   }
   ionViewDidEnter() {
-    // this.mostrarStorage();
-    // this.users = [];
+   
     this.page = this.navParams.get('info');
     this.getAllinks(this.page);
   }
 
 getAllinks(page: any) {
   this.codeProvider.getLinks(page)
-    .then(
-      (result: any) => {
-      console.log('Resultados de Links: ',result.data);
-      console.log('Links: ', result.data[0]);
+  .subscribe(
+    (result: any) =>{
         var user = result.data[0]; 
-             
-        // this.users.push(user);  
-        
+        this.util.loading.dismiss(); 
         this.links = user;
-
-          // this.users.push(links);            
-        
+  
     })
-    .catch((error: any) => {
-      // this.toast.create({ message: 'Erro ao listar os usuários. Erro: ' + error.error, position: 'botton', duration: 3000 }).present();
-    });
+     ,(error:any) => {
+      this.toast.create({ message:"Não foi possível conectar ao servidor!", position: 'botton', duration: 3000 ,closeButtonText: 'Ok!',cssClass: 'error'  }).present();
+      this.util.loading.dismiss(); 
+      this.navCtrl.setRoot('HomePage');
+    };
 }
 
 }

@@ -1,0 +1,116 @@
+page-code-senha {
+    .scroll-content {
+        padding: 80px 0 0 0;
+        margin-top: 0 !important;
+ /*        background: rgb(5, 32, 73) !important;
+        background: -moz-linear-gradient(-45deg, rgba(5, 32, 73,1) 0%, rgb(0, 0, 0) 100%) !important;
+        background: -webkit-linear-gradient(-45deg, rgba(5, 32, 73 ,1) 0%, rgb(0, 0, 0) 100%) !important;
+        background: linear-gradient(135deg, rgba(0, 28, 73, 1) 20%, rgb(0, 0, 0) 100%) !important;
+       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001cf5', endColorstr='#00bffa', GradientType=1);
+      */ 
+        > h2 {
+            padding: 0 20px;
+            text-align: center;
+            font-size: 1.3em;
+           // text-shadow: 0 0 20px #000;
+            margin: 0;
+            color: #000;
+        }
+        > h1 {
+            padding: 0 20px;
+            text-align: center;
+            font-size: 1.8em;
+            text-shadow: 0 0 20px #000;
+            margin: 10px 0 0 0;
+            font-weight: bold;
+            color: white;
+        }
+    }
+    .bt-finalizar {
+        padding: 10px;
+    }
+    ion-content{
+              z-index:9999999;
+    }
+    ion-content.pg-avaliacao.content.content-md {
+        background: url(../assets/fundo.png);
+        background-size: cover;
+      
+    }
+    .bt-fechar {
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: none;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        margin: 0;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        font-size: 0.7em;
+    }
+    .button-md {
+        //margin-top: 15px; 
+        &.facebook {
+            background: rgb(5, 32, 73) !important;
+            background: -moz-linear-gradient(-45deg, rgba(5, 32, 73,1) 0%, rgb(0, 0, 0) 100%) !important;
+            background: -webkit-linear-gradient(-45deg, rgba(5, 32, 73 ,1) 0%, rgb(0, 0, 0) 100%) !important;
+            background: linear-gradient(135deg, rgba(5, 32, 73, 1) 0%, rgb(0, 0, 0) 100%) !important;
+            color: #FFF;
+            font-weight: normal;
+        }
+        &.bt-voltar {
+            background: #6e7072;
+            color: #FFF;
+            font-weight: normal;
+        }
+
+        &.bt-cadatro {
+            background: #32db64;
+            color: #FFF;
+            font-weight: normal;
+            margin-top: 0;
+              //  height: 4rem;
+        }
+    }
+    .index-formularios {
+        .item-md {
+            background: transparent;
+            padding-left: 0;
+            min-height: 3.5em;
+            margin-top: 10px;
+            .label-md {
+                margin: 0;
+                width: 30px;
+                display: flex;
+                justify-content: center;
+                .icon-md {
+                    margin: 0;
+                    color: rgb(5, 32, 73) ;
+                }
+            }
+            .button-md {
+               
+                background: rgb(5, 32, 73) !important;
+                .icon-md  {
+                    margin: 5px; 
+                   width: 20px;
+                   text-align: center;
+                   color: #fff;
+                   font-size: 2.5em;
+               }
+        }
+       
+            .text-input {
+                color: #555;
+                font-size: 12px;
+                text-align: left;
+                &::placeholder {
+                    color: #555;
+                    opacity: 0.5;
+                }
+            }
+
+        }
+    }
+}

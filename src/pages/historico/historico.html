@@ -1,11 +1,5 @@
-<!--
-  Generated template for the HistoricoPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -14,16 +8,23 @@
     </ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding class="page-historico" >
-  <div *ngFor="let code of listaCodes" class="btn_history">
-          <button id="home-button7" ion-button color="positive" block icon-left (click)="pushPage(code)"  style="font-weight:600;    text-transform: uppercase;">
-              <ion-icon name="navigate"></ion-icon> 
-              {{code}}
-            </button> 
-          <button id="home-button77" ion-button color="positive" block icon-left (click)="removerFavorito(code)"  style="font-weight:600;    text-transform: uppercase;">
-              <ion-icon name="trash"></ion-icon> 
-            </button> 
-
-  </div>
-
+<ion-content >
+   <ion-list>
+      <ion-card class="card-list">
+        <ion-item *ngFor="let code of hist">
+          <ion-avatar item-start (click)="pushPage(code.code)">
+            <img src="{{code.img}}" *ngIf="code.img">
+            <img src="assets/img/no-img.jpeg" *ngIf="!code.img">
+          </ion-avatar>
+          <div (click)="pushPage(code.code)">
+              <h2 >{{code.code}}</h2>
+              <p>{{code.titulo}}</p>
+          </div>
+          <button ion-fab mini  item-end (click)="showConfirm(code.id_serv)">
+              <ion-icon name="trash"></ion-icon>
+              
+            </button>
+        </ion-item>
+      </ion-card>
+    </ion-list>
 </ion-content>

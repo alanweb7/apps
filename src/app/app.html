@@ -1,31 +1,31 @@
-<ion-menu [content]="mainContent">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>
-        Menu
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content id="side-menu21">
-    <ion-list id="menu-list1">
-      <ion-item color="none" menuClose="" on-click="goToHome()" id="menu-list-item1">
-        Home
-      </ion-item>
-      <ion-item color="none" menuClose="" on-click="goToMinhaConta()" id="menu-list-item2">
-        Minha Conta
-        <ion-icon name="person" item-right></ion-icon>
-      </ion-item>
-      <ion-item color="none" menuClose="" on-click="goToHistorico()" id="menu-list-item3">
-        Meus Favoritos 
-        <ion-icon name="list" item-right></ion-icon>
-      </ion-item>
-      <ion-item color="none" menuClose="" on-click="goToPasquisa()" id="menu-list-item4">
-        Pesquisa 
-        <ion-icon name="list" item-right></ion-icon>
-      </ion-item>
-
-    </ion-list>
+<ion-menu [content]="content">
+  <ion-content>
+      <div class="topo-user">
+         <button menuClose>
+             <ion-icon name="arrow-forward"></ion-icon>
+         </button>
+        <ion-avatar>
+         <img  src="assets/user.png" *ngIf="!photo"  (click)="minhaConta()">
+          <img  src="{{photo}}" *ngIf="photo"  (click)="minhaConta()">
+          <div *ngIf="mostra">
+            <h2 >{{name}} {{sobrenome}}<!--  |
+              <ion-icon color="light" name="create"></ion-icon> -->
+            </h2>
+          </div>
+           <p  *ngIf="mostra">{{email}}</p>
+           <h2 *ngIf="!mostra" (click)="logout()">Faça seu login !</h2>
+        </ion-avatar>
+      </div>
+    <ion-list class="menu-lateral">
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-icon color="primary" name="{{p.icon}}"></ion-icon> {{p.title}}
+      </button>
+      <button menuClose ion-item  (click)="logout()" *ngIf="mostra">
+        <ion-icon color="danger" class="sair" name="exit"></ion-icon>
+        <span  color="danger" >Sair</span>
+      </button>
+    </ion-list> 
   </ion-content>
-</ion-menu>
 
-<ion-nav #mainContent [root]="rootPage"></ion-nav>
+</ion-menu>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
