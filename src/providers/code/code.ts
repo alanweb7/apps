@@ -26,6 +26,7 @@ export class CodeProvider {
     let latitude = page.position.latitude;
     let longitude = page.position.longitude;
     // console.log(latitude +', '+ longitude);
+    //comentario
 
 
   // Or to get a key/value pair
@@ -99,3 +100,5 @@ getLinks(page:any) {
 }
 
 }
+
+
