@@ -34,11 +34,12 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
+  primary:    #001e5b,
   secondary:  #32db64,
-  danger:     #f53d3d,
+  danger:     #DC0000,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  black:  black ,
 );
 
 
@@ -84,5 +85,56 @@ $colors: (
 // Fonts
 // --------------------------------------------------
 
-@import "roboto";
+/* @import "roboto";
+//@import "Lato";
 @import "noto-sans";
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../../www/assets/fonts/lato-regular-webfont.ttf');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: bold;
+  font-weight: 700;
+  src: url('../../www/assets/fonts/Lato-Bold.ttf');
+} */
+//@import "Lato";
+/* @font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 300;
+  src: local("Lato Black"), local("Lato-Light"), url("../assets/fonts/lato-black-webfont.woff2") format("woff2"), url("../assets/fonts/lato-black-webfont.woff") format("woff"), url("../assets/fonts/Lato-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+ 
+  src: local("Lato Regular"), local("Lato-Regular"), url("../assets/fonts/lato-regular-webfont.woff2") format("woff2"), url("../assets/fonts/lato-regular-webfont.woff") format("woff"), url("../assets/fonts/lato-regular-webfont.ttf") format("truetype");
+
+}
+
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Lato Bold"), local("Lato-Bold"), url("../assets/fonts/lato-bold-webfont.woff2") format("woff2"), url("../assets/fonts/lato-bold-webfont.woff") format("woff"), url("../assets/fonts/Lato-Bold.ttf") format("truetype");
+
+}
+ */
+@font-face {
+  font-family: 'Lato';
+  font-weight: 300;
+  font-style: normal;
+  src: url('../assets/fonts/Lato-300/Lato-300.eot');
+  src: url('../assets/fonts/Lato-300/Lato-300.eot?#iefix') format('embedded-opentype'),
+  local('Lato Light'),
+  local('Lato-300'),
+  url('../../www/assets/fonts/lato-regular-webfont.woff2') format('woff2'),
+  url('../../www/assets/fonts/lato-regular-webfont.woff') format('woff'),
+  url('../../www/assets/fonts/lato-regular-webfont.ttf') format('truetype'),
+  url('../assets/fonts/Lato-300/Lato-300.svg#Lato') format('svg');
+  }

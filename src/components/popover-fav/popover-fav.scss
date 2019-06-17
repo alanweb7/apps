@@ -1,0 +1,32 @@
+popover-fav {
+    ion-list{
+        margin: 0;
+        padding: 20px;
+        display: block;
+        text-align: center;
+        list-style-type: none;
+        p{
+            color: #DC0000;
+        }
+        
+        .item-md.item-block .item-inner {
+            padding-right: 8px;
+            /* border-bottom: 1px solid #dedede; */
+            text-align: center;
+        }
+    }
+    .item-md p {
+        margin: 0 0 2px;
+        overflow: inherit;
+        font-size: 1.5rem;
+        line-height: normal;
+        text-overflow: inherit;
+        color: #666;
+        font-weight: bold;
+    }
+    .item-md.item-block .item-inner {
+        padding-right: 8px;
+        /* border-bottom: 1px solid #dedede; */
+        text-align: center;
+    }
+}

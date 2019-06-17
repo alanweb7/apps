@@ -1,0 +1,146 @@
+page-code-pesquisa {
+    /* .scroll-content {
+        background: -webkit-gradient(left top, right top, color-stop(0%, #210035), color-stop(45%, #210035), color-stop(84%, #74033b), color-stop(92%, #74033b), color-stop(100%, #74033c))!important;
+        background: -webkit-gradient(linear, left top, right top, from(#210035), color-stop(45%, #210035), color-stop(84%, #74033b), color-stop(92%, #74033b), to(#74033c))!important;
+        background: linear-gradient(to right, #210035 0%, #210035 45%, #74033b 84%, #74033b 92%, #74033c 100%)!important;
+   
+    } */
+    .spinner-container{
+        background: #fff;
+    }
+    ion-content.pg-login.content.content {
+         background: #fff;
+    }
+    .texto_corpo{
+        text-align: center;
+        font-weight: bolder;
+        color: #CECECE;
+        width: 50%;
+        /* opacity: 0.5; */
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 15px;
+        margin-top: 25%;
+    }
+    .card-md {
+        margin: 10px !important;
+        border-radius: 8px!important;
+        width: calc(100% - 20px)!important;
+        font-size: 1.4rem!important;
+        background: #fff!important;
+        border: 1px solid #dedede!important;
+        box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.14), 0 0px 0px -2px rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.12);
+        /* -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12); */
+    }
+    .card-ios {
+        margin: 10px !important;
+        border-radius: 8px!important;
+        width: calc(100% - 20px)!important;
+        font-size: 1.4rem!important;
+        background: #fff!important;
+        border: 1px solid #dedede!important;
+        box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.14), 0 0px 0px -2px rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.12);
+        /* -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12); */
+    }  
+    .toolbar-md {
+        padding: 4px;
+        min-height: 50px;
+        background: rgba(33,0,53,1) !important;
+        background: -moz-linear-gradient(left, rgba(33,0,53,1) 0%, rgba(33,0,53,1) 45%, rgba(116,3,59,1) 84%, rgba(116,3,59,1) 92%, rgba(116,3,60,1) 100%)!important;
+        background: -webkit-gradient(left top, right top, color-stop(0%, rgba(33,0,53,1)), color-stop(45%, rgba(33,0,53,1)), color-stop(84%, rgba(116,3,59,1)), color-stop(92%, rgba(116,3,59,1)), color-stop(100%, rgba(116,3,60,1)))!important;
+        background: -webkit-linear-gradient(left, rgba(33,0,53,1) 0%, rgba(33,0,53,1) 45%, rgba(116,3,59,1) 84%, rgba(116,3,59,1) 92%, rgba(116,3,60,1) 100%)!important;
+        background: -o-linear-gradient(left, rgba(33,0,53,1) 0%, rgba(33,0,53,1) 45%, rgba(116,3,59,1) 84%, rgba(116,3,59,1) 92%, rgba(116,3,60,1) 100%)!important;
+        background: -ms-linear-gradient(left, rgba(33,0,53,1) 0%, rgba(33,0,53,1) 45%, rgba(116,3,59,1) 84%, rgba(116,3,59,1) 92%, rgba(116,3,60,1) 100%)!important;
+        background: linear-gradient(to right, rgba(33,0,53,1) 0%, rgba(33,0,53,1) 45%, rgba(116,3,59,1) 84%, rgba(116,3,59,1) 92%, rgba(116,3,60,1) 100%)!important;
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#210035', endColorstr='#74033c', GradientType=1    )!important;
+    }
+    .toolbar-ios {
+        padding: 4px;
+        min-height: 50px;
+        background: rgba(33,0,53,1) !important;
+        background: -moz-linear-gradient(left, rgba(33,0,53,1) 0%, rgba(33,0,53,1) 45%, rgba(116,3,59,1) 84%, rgba(116,3,59,1) 92%, rgba(116,3,60,1) 100%)!important;
+        background: -webkit-gradient(left top, right top, color-stop(0%, rgba(33,0,53,1)), color-stop(45%, rgba(33,0,53,1)), color-stop(84%, rgba(116,3,59,1)), color-stop(92%, rgba(116,3,59,1)), color-stop(100%, rgba(116,3,60,1)))!important;
+        background: -webkit-linear-gradient(left, rgba(33,0,53,1) 0%, rgba(33,0,53,1) 45%, rgba(116,3,59,1) 84%, rgba(116,3,59,1) 92%, rgba(116,3,60,1) 100%)!important;
+        background: -o-linear-gradient(left, rgba(33,0,53,1) 0%, rgba(33,0,53,1) 45%, rgba(116,3,59,1) 84%, rgba(116,3,59,1) 92%, rgba(116,3,60,1) 100%)!important;
+        background: -ms-linear-gradient(left, rgba(33,0,53,1) 0%, rgba(33,0,53,1) 45%, rgba(116,3,59,1) 84%, rgba(116,3,59,1) 92%, rgba(116,3,60,1) 100%)!important;
+        background: linear-gradient(to right, rgba(33,0,53,1) 0%, rgba(33,0,53,1) 45%, rgba(116,3,59,1) 84%, rgba(116,3,59,1) 92%, rgba(116,3,60,1) 100%)!important;
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#210035', endColorstr='#74033c', GradientType=1    )!important;
+    }
+        .toolbar-ios {
+        padding: 4px;
+        min-height:  50px;
+    }
+     .toolbar-md-primary .toolbar-background-md {
+        background: rgba(33,0,53,1)  !important;
+        background: -moz-linear-gradient(left, rgba(33,0,53,1) 0%, rgba(33,0,53,1) 45%, rgba(116,3,59,1) 84%, rgba(116,3,59,1) 92%, rgba(116,3,60,1) 100%)!important;
+        background: -webkit-gradient(left top, right top, color-stop(0%, rgba(33,0,53,1)), color-stop(45%, rgba(33,0,53,1)), color-stop(84%, rgba(116,3,59,1)), color-stop(92%, rgba(116,3,59,1)), color-stop(100%, rgba(116,3,60,1)))!important;
+        background: -webkit-linear-gradient(left, rgba(33,0,53,1) 0%, rgba(33,0,53,1) 45%, rgba(116,3,59,1) 84%, rgba(116,3,59,1) 92%, rgba(116,3,60,1) 100%)!important;
+        background: -o-linear-gradient(left, rgba(33,0,53,1) 0%, rgba(33,0,53,1) 45%, rgba(116,3,59,1) 84%, rgba(116,3,59,1) 92%, rgba(116,3,60,1) 100%)!important;
+        background: -ms-linear-gradient(left, rgba(33,0,53,1) 0%, rgba(33,0,53,1) 45%, rgba(116,3,59,1) 84%, rgba(116,3,59,1) 92%, rgba(116,3,60,1) 100%)!important;
+        background: linear-gradient(to right, rgba(33,0,53,1) 0%, rgba(33,0,53,1) 45%, rgba(116,3,59,1) 84%, rgba(116,3,59,1) 92%, rgba(116,3,60,1) 100%)!important;
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#210035', endColorstr='#74033c', GradientType=1    )!important;
+        //  height: 100px;
+      
+    }
+     .toolbar-ios-primary .toolbar-background-ios {
+        background: rgba(33,0,53,1)  !important;
+        background: -moz-linear-gradient(left, rgba(33,0,53,1) 0%, rgba(33,0,53,1) 45%, rgba(116,3,59,1) 84%, rgba(116,3,59,1) 92%, rgba(116,3,60,1) 100%)!important;
+        background: -webkit-gradient(left top, right top, color-stop(0%, rgba(33,0,53,1)), color-stop(45%, rgba(33,0,53,1)), color-stop(84%, rgba(116,3,59,1)), color-stop(92%, rgba(116,3,59,1)), color-stop(100%, rgba(116,3,60,1)))!important;
+        background: -webkit-linear-gradient(left, rgba(33,0,53,1) 0%, rgba(33,0,53,1) 45%, rgba(116,3,59,1) 84%, rgba(116,3,59,1) 92%, rgba(116,3,60,1) 100%)!important;
+        background: -o-linear-gradient(left, rgba(33,0,53,1) 0%, rgba(33,0,53,1) 45%, rgba(116,3,59,1) 84%, rgba(116,3,59,1) 92%, rgba(116,3,60,1) 100%)!important;
+        background: -ms-linear-gradient(left, rgba(33,0,53,1) 0%, rgba(33,0,53,1) 45%, rgba(116,3,59,1) 84%, rgba(116,3,59,1) 92%, rgba(116,3,60,1) 100%)!important;
+        background: linear-gradient(to right, rgba(33,0,53,1) 0%, rgba(33,0,53,1) 45%, rgba(116,3,59,1) 84%, rgba(116,3,59,1) 92%, rgba(116,3,60,1) 100%)!important;
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#210035', endColorstr='#74033c', GradientType=1    )!important;
+        //  height: 100px;
+      
+    }
+    .searchbar .searchbar-clear-icon {
+        background-size: 15px;
+        background-color: transparent;
+    }
+    .searchbar-md {
+        /* background-size: 15px; */
+        /* background: #210035 !important; */
+        background: -webkit-gradient(left top, right top, color-stop(0%, #210035), color-stop(45%, #210035), color-stop(84%, #74033b), color-stop(92%, #74033b), color-stop(100%, #74033c))!important;
+        background: -webkit-gradient(linear, left top, right top, from(#210035), color-stop(45%, #210035), color-stop(84%, #74033b), color-stop(92%, #74033b), to(#74033c))!important;
+        background: linear-gradient(to right, #210035 0%, #210035 45%, #74033b 84%, #74033b 92%, #74033c 100%)!important;
+        padding: 20px;
+    }
+    .searchbar-ios {
+        /* background-size: 15px; */
+        /* background: #210035 !important; */
+        background: -webkit-gradient(left top, right top, color-stop(0%, #210035), color-stop(45%, #210035), color-stop(84%, #74033b), color-stop(92%, #74033b), color-stop(100%, #74033c))!important;
+        background: -webkit-gradient(linear, left top, right top, from(#210035), color-stop(45%, #210035), color-stop(84%, #74033b), color-stop(92%, #74033b), to(#74033c))!important;
+        background: linear-gradient(to right, #210035 0%, #210035 45%, #74033b 84%, #74033b 92%, #74033c 100%)!important;
+        padding: 20px;
+    }
+    .logo_home{
+      //  margin-top: 10%;
+      padding: 10px;
+      background: -webkit-gradient(left top, right top, color-stop(0%, #210035), color-stop(45%, #210035), color-stop(84%, #74033b), color-stop(92%, #74033b), color-stop(100%, #74033c))!important;
+      background: -webkit-gradient(linear, left top, right top, from(#210035), color-stop(45%, #210035), color-stop(84%, #74033b), color-stop(92%, #74033b), to(#74033c))!important;
+      background: linear-gradient(to right, #210035 0%, #210035 45%, #74033b 84%, #74033b 92%, #74033c 100%)!important;
+       // height: 100px;
+       // background: #000;
+       border-bottom-left-radius: 15px;
+       border-bottom-right-radius: 15px;
+          p{
+             margin-top: 2%;
+            // margin-bottom: 2%;
+             color: #fff;
+             text-align: center;
+         
+             font-size: 24px;
+          }
+          img{
+            display: block;
+            width: 60%;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+          //  margin-top: 10px;
+         }
+        
+        
+     }
+}
